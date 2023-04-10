@@ -1,0 +1,138 @@
+1) first step OK
+to modify mr/worker.go's Worker() to send an RPC to the coordinator
+asking for a task.
+Then modify the coordinator to respond with the file name of
+an as-yet-unstarted map task.
+Then modify the worker to read that file and call the application Map function,
+as in mrsequential.go.
+
+2) OK
+The map phase should divide the intermediate keys into buckets for nReduceThe map phase
+should divide the intermediate keys into buckets for nReduce reduce tasks,
+where nReduce is the number of reduce tasks -- the argument that main/mrcoordinator.go
+passes to MakeCoordinator(). Each mapper should create nReduce intermediate files
+for consumption by the reduce tasks.  reduce tasks, where nReduce is the number
+of reduce tasks -- the argument that main/mrcoordinator.go passes to MakeCoordinator().
+Each mapper should create nReduce intermediate files for consumption by the reduce tasks.
+
+3) reduce output format OK
+
+3.1) OK
+The worker implementation should put the output of the X'th reduce task in the file mr-out-X.
+
+3.2) OK
+A mr-out-X file should contain one line per Reduce function output. The line should be generated
+with the Go "%v %v" format, called with the key and value. Have a look in main/mrsequential.go
+for the line commented "this is the correct format". The test script will fail if your
+implementation deviates too much from this format.
+
+4) intermediate OK
+
+4.1) OK
+The worker should put intermediate Map output in files in the current directory,
+where your worker can later read them as input to Reduce tasks.
+
+Hint {
+1. OK
+A reasonable naming convention for intermediate files is mr-X-Y,
+where X is the Map task number, and Y is the reduce task number.
+
+2. OK
+The worker's map task code will need a way to store intermediate key/value pairs
+in files in a way that can be correctly read back during reduce tasks.
+One possibility is to use Go's encoding/json package.
+To write key/value pairs in JSON format to an open file:
+
+     enc := json.NewEncoder(file)
+     for _, kv := ... {
+       err := enc.Encode(&kv)
+
+and to read such a file back:
+
+     dec := json.NewDecoder(file)
+     for {
+       var kv KeyValue
+       if err := dec.Decode(&kv); err != nil {
+         break
+       }
+       kva = append(kva, kv)
+     }
+
+3. OK
+The map part of your worker can use the ihash(key)
+function (in worker.go) to pick the reduce task for a given key.
+
+4. OK
+You can steal some code from mrsequential.go for reading Map input files, (OK)
+for sorting intermedate key/value pairs between the Map and Reduce, (OK)
+and for storing Reduce output in files.(OK)
+}
+
+5) last step(exit)
+
+5.1) OK
+main/mrcoordinator.go expects mr/coordinator.go to implement a Done() method
+that returns true when the MapReduce job is completely finished; at that point,
+mrcoordinator.go will exit.
+
+5.2) OK
+When the job is completely finished, the worker processes should exit.
+A simple way to implement this is to use the return value from call():
+if the worker fails to contact the coordinator,
+it can assume that the coordinator has exited because the job is done,
+so the worker can terminate too.
+Depending on your design, you might also find it helpful to have a "please exit" pseudo-task
+that the coordinator can give to workers.
+
+6) OK
+The coordinator, as an RPC server, will be concurrent; don't forget to lock shared data.
+
+7). final test
+
+7.1)
+Use Go's race detector, with go run -race. test-mr.sh has a comment at the start that tells
+you how to run it with -race. When we grade your labs,
+we will not use the race detector. Nevertheless, if your code has races,
+there's a good chance it will fail when we test it even without the race detector.
+
+7.2)
+To test crash recovery, you can use the mrapps/crash.go application plugin.
+It randomly exits in the Map and Reduce functions.
+
+7.3)
+test-mr.sh runs all its processes in the sub-directory mr-tmp,
+so if something goes wrong and you want to look at intermediate or output files, look there.
+Feel free to temporarily modify test-mr.sh to exit after the failing test,
+so the script does not continue testing (and overwrite the output files).
+
+7.4)
+test-mr-many.sh runs test-mr.sh many times in a row,
+which you may want to do in order to spot low-probability bugs.
+It takes as an argument the number of times to run the tests.
+You should not run several test-mr.sh instances in parallel because the coordinator will
+reuse the same socket, causing conflicts.
+
+8) OK
+Workers will sometimes need to wait, e.g. reduces can't start until the last map has finished.
+One possibility is for workers to periodically ask the coordinator for work,
+sleeping with time.Sleep() between each request.
+Another possibility is for the relevant RPC handler in the coordinator to have a loop that waits,
+either with time.Sleep() or sync.Cond.
+Go runs the handler for each RPC in its own thread,
+so the fact that one handler is waiting needn't prevent the coordinator from
+processing other RPCs.
+
+9) OK
+The coordinator can't reliably distinguish between crashed workers,
+workers that are alive but have stalled for some reason,
+and workers that are executing but too slowly to be useful.
+The best you can do is have the coordinator wait for some amount of time,
+and then give up and re-issue the task to a different worker.
+For this lab, have the coordinator wait for ten seconds;
+after that the coordinator should assume the worker has died (of course, it might not have).
+
+10) OK
+To ensure that nobody observes partially written files in the presence of crashes,
+the MapReduce paper mentions the trick of using a temporary file
+and atomically renaming it once it is completely written.
+You can use ioutil.TempFile to create a temporary file and os.Rename to atomically rename it.
