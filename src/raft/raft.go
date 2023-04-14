@@ -194,6 +194,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	if rf.currentTerm <= args.Term && (rf.votedFor == -1 || rf.votedFor == args.CandidateId) {
 		reply.VoteGrant = true
 		rf.votedFor = args.CandidateId
+		rf.heartBeatFlag = true
 	}
 	rf.mu.Unlock()
 	fmt.Printf("server %v grant %v for candidate %v's requestVote\n", rf.me, reply.VoteGrant, args.CandidateId)
@@ -320,8 +321,8 @@ func (rf *Raft) killed() bool {
 
 func (rf *Raft) ticker() {
 	for rf.killed() == false {
-		//term, isleader := rf.GetState()
-		//fmt.Printf("server %v term %v state %v(leader %v)(heartFlag %v)\n", rf.me, term, rf.state, isleader, rf.heartBeatFlag)
+		term, isleader := rf.GetState()
+		fmt.Printf("server %v term %v state %v(leader %v)(heartFlag %v)\n", rf.me, term, rf.state, isleader, rf.heartBeatFlag)
 
 		// Your code here (2A)
 		// Check if a leader election should be started.

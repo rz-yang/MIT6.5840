@@ -1,4 +1,11 @@
-2A: leader election
+
+
+
+
+
+
+
+2A: leader election (OK)
 
 Task:
 Implement Raft leader election and heartbeats
