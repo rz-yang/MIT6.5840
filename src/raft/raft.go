@@ -64,9 +64,9 @@ const (
 )
 
 const (
-	MinElectionTimeOut          int = 250
-	MaxElectionTimeOut          int = 500
-	HeartbeatPeriodTime         int = 150
+	MinElectionTimeOut          int = 150
+	MaxElectionTimeOut          int = 250
+	HeartbeatPeriodTime         int = 50
 	CommitIndexUpdatePeriodTime int = 10
 )
 
@@ -289,6 +289,7 @@ func (rf *Raft) AppendEntries(args *AppendEntryArgs, reply *AppendEntryReply) {
 		}
 		reply.Success = false
 	} else {
+		rf.log = rf.log[:args.PrevLogIndex+1]
 		for _, entry := range args.Entries {
 			rf.log = append(rf.log, entry)
 		}
@@ -296,7 +297,7 @@ func (rf *Raft) AppendEntries(args *AppendEntryArgs, reply *AppendEntryReply) {
 			newCommitIndex := min(args.LeaderCommit, rf.getLastLogIndex())
 			go func(lstIndex, newCommitIndex int) {
 				for i := lstIndex + 1; i <= newCommitIndex; i++ {
-					fmt.Printf("follower server %v commit index %v\n", rf.me, i)
+					fmt.Printf("follower server %v commit index %v command %v \n", rf.me, i, rf.log[i].Command)
 					*rf.applyCh <- ApplyMsg{
 						CommandValid: true,
 						Command:      rf.log[i].Command,
@@ -579,7 +580,7 @@ func (rf *Raft) updateLeaderCommitIndex() {
 			sort.Ints(tmp)
 			newCommitIndex := tmp[len(rf.matchIndex)/2]
 			for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
-				fmt.Printf("leader server %v commit index %v\n", rf.me, i)
+				fmt.Printf("leader server %v commit index %v command %v\n", rf.me, i, rf.log[i].Command)
 				*rf.applyCh <- ApplyMsg{
 					CommandValid: true,
 					Command:      rf.log[i].Command,
@@ -622,7 +623,19 @@ func (rf *Raft) updateLeader(reply *AppendEntryReply, ptr int, len int) {
 		fmt.Printf("update server %v 's matchIndex from %v to %v\n", ptr, rf.matchIndex[ptr], rf.nextIndex[ptr]-1)
 		rf.matchIndex[ptr] = rf.nextIndex[ptr] - 1
 	} else {
-		rf.nextIndex[ptr]--
+		// optimization: bypass all the conflicting entries in that term
+		lstTerm := rf.log[rf.nextIndex[ptr]-1].Term
+		lo, hi := 0, rf.nextIndex[ptr]-1
+		for lo <= hi {
+			mid := (lo + hi) / 2
+			if rf.log[mid].Term >= lstTerm {
+				hi = mid - 1
+			} else {
+				lo = mid + 1
+			}
+		}
+		// rf.nextIndex[ptr]--
+		rf.nextIndex[ptr] = lo
 	}
 }
 
@@ -655,7 +668,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 		state:         Follower,
 		currentTerm:   0,
 		votedFor:      -1,
-		log:           make([]LogEntry, 1), // first index is 1
+		log:           make([]LogEntry, 0), // first index is 1
 		commitIndex:   0,
 		lastApplied:   0,
 		nextIndex:     make([]int, cnt),
@@ -665,6 +678,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 		cnt:           make(map[int]int),
 		// heartBeatCnt: 0,
 	}
+	rf.log = append(rf.log, LogEntry{Term: -1})
 	// println(rf.applyCh == &applyCh)
 
 	// initialize from state persisted before a crash
