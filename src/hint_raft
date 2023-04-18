@@ -1,4 +1,47 @@
-2B: log
+2C: persistence (OK)
+
+Task:
+Complete the functions persist() and readPersist() in raft.go
+by adding code to save and restore persistent state.
+You will need to encode (or "serialize") the state as an array of bytes in order
+to pass it to the Persister.
+Use the labgob encoder; see the comments in persist() and readPersist().
+labgob is like Go's gob encoder but prints error messages if you try to encode
+structures with lower-case field names.
+For now, pass nil as the second argument to persister.Save().
+Insert calls to persist() at the points where your implementation changes persistent state.
+Once you've done this, and if the rest of your implementation is correct,
+you should pass all of the 2C tests.
+
+
+Optimization for 2B: (OK)
+
+XTerm:  term in the conflicting entry (if any)
+XIndex: index of first entry with that term (if any)
+XLen:   log length
+
+Then the leader's logic can be something like:
+
+Case 1: leader doesn't have XTerm:
+    nextIndex = XIndex
+Case 2: leader has XTerm:
+    nextIndex = leader's last entry for XTerm
+Case 3: follower's log is too short:
+    nextIndex = XLen
+
+
+Hint:
+
+OK
+Run git pull to get the latest lab software.
+
+OK
+The 2C tests are more demanding than those for 2A or 2B,
+and failures may be caused by problems in your code for 2A or 2B.
+
+
+
+2B: log (OK)
 
 Task:
 Implement the leader and follower code to append new log entries,
