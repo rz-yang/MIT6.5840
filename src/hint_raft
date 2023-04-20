@@ -1,3 +1,58 @@
+2D: log compaction
+
+Task:
+Implement Snapshot() and the InstallSnapshot RPC,
+as well as the changes to Raft to support these (e.g, operation with a trimmed log).
+Your solution is complete when it passes the 2D tests
+(and all the previous Lab 2 tests).
+
+
+Hint:
+
+OK
+git pull to make sure you have the latest software.
+
+OK
+A good place to start is to modify your code to so that it is able to
+store just the part of the log starting at some index X.
+Initially you can set X to zero and run the 2B/2C tests.
+Then make Snapshot(index) discard the log before index, and set X equal to index.
+If all goes well you should now pass the first 2D test.
+
+OK
+You won't be able to store the log in a Go slice and
+use Go slice indices interchangeably with Raft log indices;
+you'll need to index the slice in a way that accounts
+for the discarded portion of the log.
+
+OK
+Next: have the leader send an InstallSnapshot RPC if it doesn't have the log entries
+required to bring a follower up to date.
+
+OK
+Send the entire snapshot in a single InstallSnapshot RPC.
+Don't implement Figure 13's offset mechanism for splitting up the snapshot.
+
+OK
+Raft must discard old log entries in a way that allows
+the Go garbage collector to free and re-use the memory;
+this requires that there be no reachable references (pointers)
+to the discarded log entries.
+
+OK
+Even when the log is trimmed, your implemention still needs to
+properly send the term and index of the entry prior to
+new entries in AppendEntries RPCs; this may require saving and
+referencing the latest snapshot's lastIncludedTerm/lastIncludedIndex
+(consider whether this should be persisted).
+
+OK
+A reasonable amount of time to consume for the full set of Lab 2 tests (2A+2B+2C+2D)
+without -race is 6 minutes of real time and one minute of CPU time.
+When running with -race, it is about 10 minutes of real time and
+two minutes of CPU time.
+
+
 2C: persistence (OK)
 
 Task:
@@ -13,6 +68,11 @@ Insert calls to persist() at the points where your implementation changes persis
 Once you've done this, and if the rest of your implementation is correct,
 you should pass all of the 2C tests.
 
+
+other task:
+if coming RPC request with smaller index than commitIndex,
+then we can use other way to deal with it...
+just say ok for committed index since leader has it and follower also has it
 
 Optimization for 2B: (OK)
 
