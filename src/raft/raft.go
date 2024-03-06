@@ -181,9 +181,9 @@ const (
 )
 
 const (
-	MinElectionTimeOut          int = 200
+	MinElectionTimeOut          int = 250
 	MaxElectionTimeOut          int = 450
-	HeartbeatPeriodTime         int = 50
+	HeartbeatPeriodTime         int = 60
 	CommitIndexUpdatePeriodTime int = 10
 )
 
@@ -348,6 +348,7 @@ type RequestVoteReply struct {
 func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	// Your code here (2A, 2B).
 	rf.mu.Lock()
+	defer rf.mu.Unlock()
 	reply.Term = rf.currentTerm
 	if rf.currentTerm < args.Term {
 		rf.currentTerm = args.Term
@@ -355,6 +356,9 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		rf.votedFor = -1
 		rf.convertFollower()
 		rf.persist()
+	}
+	if rf.currentTerm > args.Term {
+		return
 	}
 	lastLogIndex := rf.log.getLastIndex()
 	lastLogTerm := rf.log.getEntryTerm(lastLogIndex)
@@ -375,7 +379,6 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		}
 		rf.heartBeatFlag = true
 	}
-	rf.mu.Unlock()
 	fmt.Printf("server %v grant %v for candidate %v's requestVote\n", rf.me, reply.VoteGrant, args.CandidateId)
 }
 
@@ -479,6 +482,8 @@ type AppendEntryReply struct {
 func (rf *Raft) AppendEntries(args *AppendEntryArgs, reply *AppendEntryReply) {
 	fmt.Printf("server %v receives appendEntry from leader %v prevLogIndex %v\n", rf.me, args.LeaderId, args.PrevLogIndex)
 	rf.mu.Lock()
+	//fmt.Printf("server %v acquire appendEntry lock succeed\n", rf.me)
+	//defer fmt.Printf("server %v receives appendEntry from leader %v finished\n", rf.me, args.LeaderId)
 	defer rf.mu.Unlock()
 	reply.Term = rf.currentTerm
 	if rf.currentTerm < args.Term {
@@ -550,12 +555,14 @@ func (rf *Raft) AppendEntries(args *AppendEntryArgs, reply *AppendEntryReply) {
 					Command:      rf.log.get(i).Command,
 					CommandIndex: i,
 				}
+				fmt.Printf("follower server %v commit index %v command %v succeed\n", rf.me, i, rf.log.get(i).Command)
 			}
 			rf.commitIndex = newCommitIndex
 		}
 		reply.Success = true
 	}
 	rf.heartBeatFlag = true
+
 	// go rf.heartBeatReceived()
 }
 
@@ -843,6 +850,7 @@ func (rf *Raft) updateLeaderCommitIndex() {
 		rf.mu.Unlock()
 		go func() {
 			rf.mu.Lock()
+			defer rf.mu.Unlock()
 			tmp := make([]int, len(rf.matchIndex))
 			for i, v := range rf.matchIndex {
 				tmp[i] = v
@@ -861,7 +869,6 @@ func (rf *Raft) updateLeaderCommitIndex() {
 				}
 				rf.commitIndex = newCommitIndex
 			}
-			rf.mu.Unlock()
 		}()
 		time.Sleep(getDuration(CommitIndexUpdatePeriodTime))
 	}

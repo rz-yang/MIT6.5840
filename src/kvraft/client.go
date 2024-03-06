@@ -1,13 +1,24 @@
 package kvraft
 
-import "6.5840/labrpc"
+import (
+	"6.5840/labrpc"
+	"fmt"
+	"time"
+)
 import "crypto/rand"
 import "math/big"
 
+const (
+	TryNextNodeTime = 5
+)
 
 type Clerk struct {
 	servers []*labrpc.ClientEnd
 	// You will have to modify this struct.
+	leaderId int
+	clerkId  int
+	seq      int
+	// cntServers int
 }
 
 func nrand() int64 {
@@ -18,10 +29,15 @@ func nrand() int64 {
 }
 
 func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
-	ck := new(Clerk)
-	ck.servers = servers
+	fmt.Printf("creat client")
+	ck := Clerk{
+		servers:  servers,
+		leaderId: 0,
+		// cntServers: len(servers),
+		seq: 0,
+	}
 	// You'll have to add code here.
-	return ck
+	return &ck
 }
 
 // fetch the current value for a key.
@@ -37,7 +53,33 @@ func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
 func (ck *Clerk) Get(key string) string {
 
 	// You will have to modify this function.
-	return ""
+	//fmt.Printf("Get key:%v\n", key)
+	args := GetArgs{
+		Key: key,
+		Seq: ck.seq,
+	}
+	ck.seq++
+
+	for {
+		reply := GetReply{}
+		ok := ck.servers[ck.leaderId].Call("KVServer.Get", &args, &reply)
+		if ok {
+			if reply.Err == ErrWrongLeader {
+				fmt.Printf("ErrWrongLeader id: %v, tryNewLeader: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
+				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
+				time.Sleep(time.Duration(TryNextNodeTime) * time.Millisecond)
+				continue
+			} else if reply.Err == ErrTermChanged {
+				fmt.Printf("Leader term %v changed, tryNewLeader: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
+				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
+				time.Sleep(time.Duration(TryNextNodeTime) * time.Millisecond)
+				continue
+			}
+		}
+		fmt.Printf("Get key:%v succeed (leaderid:%v)\n", key, ck.leaderId)
+		return reply.Value
+	}
+
 }
 
 // shared by Put and Append.
@@ -50,11 +92,40 @@ func (ck *Clerk) Get(key string) string {
 // arguments. and reply must be passed as a pointer.
 func (ck *Clerk) PutAppend(key string, value string, op string) {
 	// You will have to modify this function.
+	//fmt.Printf("%v key:%v val:%v\n", op, key, value)
+	args := PutAppendArgs{
+		Key:   key,
+		Value: value,
+		Op:    op,
+		Seq:   ck.seq,
+	}
+	ck.seq++
+	for {
+		reply := PutAppendReply{}
+		ok := ck.servers[ck.leaderId].Call("KVServer.PutAppend", &args, &reply)
+		if ok {
+			if reply.Err == ErrWrongLeader {
+				fmt.Printf("ErrWrongLeader id: %v, tryNewLeader: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
+				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
+				time.Sleep(time.Duration(TryNextNodeTime) * time.Millisecond)
+				continue
+			} else if reply.Err == ErrTermChanged {
+				fmt.Printf("Leader term %v changed, tryNewLeader: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
+				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
+				time.Sleep(time.Duration(TryNextNodeTime) * time.Millisecond)
+				continue
+			}
+		}
+		fmt.Printf("%v key:%v val:%v succeed (leaderid:%v)\n", op, key, value, ck.leaderId)
+		return
+	}
 }
 
 func (ck *Clerk) Put(key string, value string) {
+	// fmt.Printf("Put key val:%v, %v", key, value)
 	ck.PutAppend(key, value, "Put")
 }
 func (ck *Clerk) Append(key string, value string) {
+	// fmt.Printf("Append key val:%v, %v", key, value)
 	ck.PutAppend(key, value, "Append")
 }
