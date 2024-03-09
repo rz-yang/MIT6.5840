@@ -1,0 +1,3035 @@
+server 0 no snopshot yet
+server 1 no snopshot yet
+server 2 no snopshot yet
+Test (2A): initial election ...
+server 1 term 0 state 0(leader false)(heartFlag false)
+server 1 term 0 doesn't hear any heartbeat
+server 1 convert to candidate
+server 0 term 0 state 0(leader false)(heartFlag false)
+server 0 term 0 doesn't hear any heartbeat
+server 0 convert to candidate
+server 2 term 0 state 0(leader false)(heartFlag false)
+server 2 term 0 doesn't hear any heartbeat
+server 2 convert to candidate
+server 2 already has a voteFor 2 but not candidate 1
+server 2 grant false for candidate 1's requestVote
+server 1 already has a voteFor 1 but not candidate 2
+server 1 grant false for candidate 2's requestVote
+server 0 already has a voteFor 0 but not candidate 1
+server 0 grant false for candidate 1's requestVote
+server 2 already has a voteFor 2 but not candidate 0
+server 2 grant false for candidate 0's requestVote
+server 1 already has a voteFor 1 but not candidate 0
+server 1 grant false for candidate 0's requestVote
+server 0 already has a voteFor 0 but not candidate 2
+server 0 grant false for candidate 2's requestVote
+server 2 term 1 ElectionTimeOut
+server 2 convert to candidate
+server 1 convert to follower
+server 1 grant true for candidate 2's requestVote
+server 0 convert to follower
+server 2 convert to leader
+server 0 grant true for candidate 2's requestVote
+server 2 term 2 send appendEntries
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 term 2 state 0(leader false)(heartFlag true)
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 2 term 2 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 term 2 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 1 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 2 term 2 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 term 2 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 term 2 state 0(leader false)(heartFlag true)
+server 2 term 2 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+update server 1 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 2 term 2 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 1 term 2 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+  ... Passed --   3.0  3  189   53664    0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 no snopshot yet
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 no snopshot yet
+server 0 term 0 state 0(leader false)(heartFlag false)
+server 1 term 0 state 0(leader false)(heartFlag false)
+server 1 term 0 doesn't hear any heartbeat
+server 1 convert to candidate
+update server 0 's matchIndex from 0 to 0
+server 0 term 0 doesn't hear any heartbeat
+server 0 convert to candidate
+update server 1 's matchIndex from 0 to 0
+server 2 no snopshot yet
+server 2 term 0 state 0(leader false)(heartFlag false)
+server 2 term 0 doesn't hear any heartbeat
+server 2 convert to candidate
+Test (2A): election after network failure ...
+server 1 already has a voteFor 1 but not candidate 2
+server 1 grant false for candidate 2's requestVote
+server 0 already has a voteFor 0 but not candidate 2
+server 0 grant false for candidate 2's requestVote
+server 0 term 1 ElectionTimeOut
+server 0 convert to candidate
+server 2 convert to follower
+server 2 grant true for candidate 0's requestVote
+server 1 convert to follower
+server 0 convert to leader
+server 1 grant true for candidate 0's requestVote
+server 0 term 2 send appendEntries
+server 1 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 0 prevLogIndex 0
+server 2 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 0 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 term 2 state 0(leader false)(heartFlag true)
+server 2 term 2 state 0(leader false)(heartFlag true)
+server 1 term 2 state 0(leader false)(heartFlag false)
+server 1 term 2 doesn't hear any heartbeat
+server 1 convert to candidate
+server 2 convert to follower
+server 2 grant true for candidate 1's requestVote
+server 1 convert to leader
+server 1 term 3 send appendEntries
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+server 0 term 2 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+server 0 convert to follower
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 term 3 state 0(leader false)(heartFlag true)
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 term 3 state 0(leader false)(heartFlag true)
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 term 3 state 0(leader false)(heartFlag true)
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 term 3 state 0(leader false)(heartFlag true)
+server 0 term 3 state 0(leader false)(heartFlag true)
+server 1 term 3 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 0 term 3 state 0(leader false)(heartFlag false)
+server 0 term 3 doesn't hear any heartbeat
+server 0 convert to candidate
+server 1 term 3 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 2 term 3 state 0(leader false)(heartFlag false)
+server 2 term 3 doesn't hear any heartbeat
+server 2 convert to candidate
+server 1 term 3 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 2 term 4 ElectionTimeOut
+server 2 convert to candidate
+server 0 term 4 ElectionTimeOut
+server 0 convert to candidate
+server 1 term 3 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 2 term 5 ElectionTimeOut
+server 2 convert to candidate
+server 0 term 5 ElectionTimeOut
+server 0 convert to candidate
+server 1 term 3 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 2 term 6 ElectionTimeOut
+server 2 convert to candidate
+server 0 term 6 ElectionTimeOut
+server 0 convert to candidate
+server 1 term 3 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 2 term 7 ElectionTimeOut
+server 2 convert to candidate
+server 0 convert to follower
+server 0 grant true for candidate 2's requestVote
+server 2 convert to leader
+server 2 term 8 send appendEntries
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 term 3 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 1 term 3 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+server 1 convert to follower
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 term 8 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 term 8 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 term 8 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 term 8 state 0(leader false)(heartFlag true)
+server 0 term 8 state 0(leader false)(heartFlag true)
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+  ... Passed --   4.5  3  342   75290    0
+server 0 no snopshot yet
+server 0 term 0 state 0(leader false)(heartFlag false)
+server 0 term 0 doesn't hear any heartbeat
+server 1 no snopshot yet
+server 0 convert to candidate
+server 1 term 0 state 0(leader false)(heartFlag false)
+server 1 term 0 doesn't hear any heartbeat
+server 1 convert to candidate
+server 2 no snopshot yet
+server 2 term 0 state 0(leader false)(heartFlag false)
+server 2 term 0 doesn't hear any heartbeat
+server 2 convert to candidate
+server 3 no snopshot yet
+server 3 term 0 state 0(leader false)(heartFlag false)
+server 3 term 0 doesn't hear any heartbeat
+server 3 convert to candidate
+server 4 no snopshot yet
+server 4 term 0 state 0(leader false)(heartFlag false)
+server 4 term 0 doesn't hear any heartbeat
+server 4 convert to candidate
+server 5 no snopshot yet
+server 5 term 0 state 0(leader false)(heartFlag false)
+server 5 term 0 doesn't hear any heartbeat
+server 5 convert to candidate
+server 6 no snopshot yet
+server 6 term 0 state 0(leader false)(heartFlag false)
+server 6 term 0 doesn't hear any heartbeat
+server 6 convert to candidate
+Test (2A): multiple elections ...
+server 2 already has a voteFor 2 but not candidate 6
+server 2 grant false for candidate 6's requestVote
+server 0 already has a voteFor 0 but not candidate 6
+server 0 grant false for candidate 6's requestVote
+server 5 already has a voteFor 5 but not candidate 6
+server 5 grant false for candidate 6's requestVote
+server 3 already has a voteFor 3 but not candidate 6
+server 3 grant false for candidate 6's requestVote
+server 4 already has a voteFor 4 but not candidate 6
+server 4 grant false for candidate 6's requestVote
+server 1 already has a voteFor 1 but not candidate 6
+server 1 grant false for candidate 6's requestVote
+server 2 term 1 ElectionTimeOut
+server 2 convert to candidate
+server 6 convert to follower
+server 4 convert to follower
+server 6 grant true for candidate 2's requestVote
+server 4 grant true for candidate 2's requestVote
+server 3 convert to follower
+server 5 convert to follower
+server 0 convert to follower
+server 0 grant true for candidate 2's requestVote
+server 5 grant true for candidate 2's requestVote
+server 3 grant true for candidate 2's requestVote
+server 1 convert to follower
+server 2 convert to leader
+server 2 term 2 send appendEntries
+server 1 grant true for candidate 2's requestVote
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+update server 4 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+update server 5 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 1 term 2 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 term 2 state 0(leader false)(heartFlag true)
+server 6 term 2 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 4 term 2 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 3 term 2 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+update server 6 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 5 term 2 state 0(leader false)(heartFlag true)
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 6 term 2 state 0(leader false)(heartFlag true)
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 2 term 2 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 1 || 1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 0 || 0 || 0 || 0 || 
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 0 term 2 state 0(leader false)(heartFlag true)
+server 1 term 2 state 0(leader false)(heartFlag false)
+server 1 term 2 doesn't hear any heartbeat
+server 1 convert to candidate
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 convert to follower
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 term 2 state 0(leader false)(heartFlag true)
+server 3 term 2 state 0(leader false)(heartFlag false)
+server 3 term 2 doesn't hear any heartbeat
+server 3 convert to candidate
+server 2 term 3 state 0(leader false)(heartFlag false)
+server 2 term 3 doesn't hear any heartbeat
+server 2 convert to candidate
+server 1 convert to follower
+server 1 grant true for candidate 2's requestVote
+server 5 convert to follower
+server 4 convert to follower
+server 5 grant true for candidate 2's requestVote
+server 4 grant true for candidate 2's requestVote
+server 2 convert to leader
+server 2 term 4 send appendEntries
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+server 0 term 2 state 0(leader false)(heartFlag false)
+server 0 term 2 doesn't hear any heartbeat
+server 0 convert to candidate
+update server 4 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 5 term 4 state 0(leader false)(heartFlag true)
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 6 term 2 state 0(leader false)(heartFlag true)
+server 3 term 3 ElectionTimeOut
+server 3 convert to candidate
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+server 0 convert to follower
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+server 3 convert to follower
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 4 term 4 state 0(leader false)(heartFlag true)
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 6 term 2 state 0(leader false)(heartFlag false)
+server 6 term 2 doesn't hear any heartbeat
+server 6 convert to candidate
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 5 term 4 state 0(leader false)(heartFlag true)
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 1 term 4 state 0(leader false)(heartFlag true)
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 4 term 4 state 0(leader false)(heartFlag true)
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+update server 5 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+server 6 convert to follower
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 2 term 4 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 1 || 1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 0 || 0 || 0 || 0 || 
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 5 term 4 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 0 term 4 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 3 term 4 state 0(leader false)(heartFlag true)
+server 1 term 4 state 0(leader false)(heartFlag false)
+server 1 term 4 doesn't hear any heartbeat
+server 1 convert to candidate
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 4 term 4 state 0(leader false)(heartFlag true)
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 5 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 6 term 4 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 5 receives appendEntry from leader 2 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 5 's matchIndex from 0 to 0
+server 0 term 4 state 0(leader false)(heartFlag false)
+server 0 term 4 doesn't hear any heartbeat
+server 0 convert to candidate
+server 2 term 4 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 1 || 1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 0 || 0 || 0 || 0 || 
+server 5 term 4 state 0(leader false)(heartFlag true)
+server 1 term 5 ElectionTimeOut
+server 1 convert to candidate
+server 6 convert to follower
+server 6 grant true for candidate 1's requestVote
+server 0 convert to follower
+server 0 grant true for candidate 1's requestVote
+server 4 convert to follower
+server 4 grant true for candidate 1's requestVote
+server 1 convert to leader
+server 1 term 6 send appendEntries
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 3 term 4 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 6 term 6 state 0(leader false)(heartFlag true)
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 4 term 6 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 5 term 4 state 0(leader false)(heartFlag false)
+server 5 term 4 doesn't hear any heartbeat
+server 5 convert to candidate
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+server 3 term 4 state 0(leader false)(heartFlag false)
+server 3 term 4 doesn't hear any heartbeat
+server 3 convert to candidate
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 2 term 4 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 1 || 1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 0 || 0 || 0 || 0 || 
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 2 prevLogIndex 0
+server 0 receives appendEntry from leader 2 prevLogIndex 0
+server 2 convert to follower
+server 4 receives appendEntry from leader 2 prevLogIndex 0
+server 1 receives appendEntry from leader 2 prevLogIndex 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 6 term 6 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+update server 6 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 4 term 6 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+update server 0 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 0 term 6 state 0(leader false)(heartFlag true)
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 5 term 5 ElectionTimeOut
+server 5 convert to candidate
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 2 term 6 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+update server 0 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 1 term 6 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 1 || 1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 0 || 0 || 0 || 0 || 
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 6 term 6 state 0(leader false)(heartFlag true)
+server 3 term 5 ElectionTimeOut
+server 3 convert to candidate
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 4 term 6 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+update server 6 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 5 term 6 ElectionTimeOut
+server 5 convert to candidate
+server 0 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 1 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 2 term 6 state 0(leader false)(heartFlag true)
+server 6 term 6 state 0(leader false)(heartFlag true)
+server 0 term 6 state 0(leader false)(heartFlag true)
+server 3 term 6 ElectionTimeOut
+server 3 convert to candidate
+server 6 convert to follower
+server 2 convert to follower
+server 5 already has a voteFor 5 but not candidate 3
+server 2 grant true for candidate 3's requestVote
+server 5 grant false for candidate 3's requestVote
+server 6 grant true for candidate 3's requestVote
+server 1 term 6 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 1 || 1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 0 || 0 || 0 || 0 || 
+server 5 term 7 ElectionTimeOut
+server 5 convert to candidate
+server 6 convert to follower
+server 6 grant true for candidate 5's requestVote
+server 3 convert to follower
+server 2 convert to follower
+server 3 grant true for candidate 5's requestVote
+server 2 grant true for candidate 5's requestVote
+server 5 convert to leader
+server 5 term 8 send appendEntries
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 4 term 6 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 0 term 6 state 0(leader false)(heartFlag false)
+server 0 term 6 doesn't hear any heartbeat
+server 0 convert to candidate
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 6 term 8 state 0(leader false)(heartFlag true)
+server 1 term 6 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 1 || 1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 0 || 0 || 0 || 0 || 
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 2 term 8 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+server 0 convert to follower
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+server 1 convert to follower
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+update server 3 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 4 term 6 state 0(leader false)(heartFlag false)
+server 4 term 6 doesn't hear any heartbeat
+server 4 convert to candidate
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 term 8 state 0(leader false)(heartFlag false)
+server 2 term 8 doesn't hear any heartbeat
+server 2 convert to candidate
+server 6 term 8 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 term 8 state 0(leader false)(heartFlag true)
+server 5 term 8 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 1 || 1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 0 || 0 || 0 || 0 || 
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 3 term 8 state 0(leader false)(heartFlag true)
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+server 4 convert to follower
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+server 5 convert to follower
+server 0 term 8 state 0(leader false)(heartFlag true)
+server 6 term 8 state 0(leader false)(heartFlag true)
+server 5 term 9 state 0(leader false)(heartFlag false)
+server 5 term 9 doesn't hear any heartbeat
+server 5 convert to candidate
+server 3 convert to follower
+server 2 convert to follower
+server 2 grant true for candidate 5's requestVote
+server 4 convert to follower
+server 4 grant true for candidate 5's requestVote
+server 1 convert to follower
+server 1 grant true for candidate 5's requestVote
+server 3 grant true for candidate 5's requestVote
+server 5 convert to leader
+server 5 term 10 send appendEntries
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 1 term 10 state 0(leader false)(heartFlag true)
+server 3 term 10 state 0(leader false)(heartFlag true)
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 term 8 state 0(leader false)(heartFlag false)
+server 0 term 8 doesn't hear any heartbeat
+server 0 convert to candidate
+server 4 term 10 state 0(leader false)(heartFlag true)
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+update server 4 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+server 6 convert to follower
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+server 0 convert to follower
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 3 term 10 state 0(leader false)(heartFlag true)
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 6 term 10 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+server 1 term 10 state 0(leader false)(heartFlag true)
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 2 term 10 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+update server 0 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 4 term 10 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 6 term 10 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 5 term 10 state 2(leader true)(heartFlag false)
+nextIndex
+1 || 1 || 1 || 1 || 1 || 1 || 1 || 
+matchIndex
+0 || 0 || 0 || 0 || 0 || 0 || 0 || 
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+update server 0 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 1 term 10 state 0(leader false)(heartFlag true)
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 6 's matchIndex from 0 to 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+server 3 term 10 state 0(leader false)(heartFlag true)
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 4 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 3 's matchIndex from 0 to 0
+update server 2 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 1 's matchIndex from 0 to 0
+server 0 receives appendEntry from leader 5 prevLogIndex 0
+server 2 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 1 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+server 4 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 1 's matchIndex from 0 to 0
+server 6 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 2 's matchIndex from 0 to 0
+server 3 receives appendEntry from leader 5 prevLogIndex 0
+current commitIndex 0 lastIncludedIndex 0 snapshot exists ? false
+update server 0 's matchIndex from 0 to 0
+update server 6 's matchIndex from 0 to 0
+update server 4 's matchIndex from 0 to 0
+update server 3 's matchIndex from 0 to 0
+  ... Passed --   5.4  7 1205  280876    0
+PASS
+ok  	6.5840/raft	12.912s

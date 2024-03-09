@@ -56,6 +56,7 @@ func (log *Log) beginIndex() int {
 func (log *Log) get(i int) LogEntry {
 	if !log.check(i) {
 		fmt.Printf("get %v out of log's bound %v - %v\n", i, log.beginIndex(), log.getLastIndex())
+		// println(debug.Stack())
 		os.Exit(10)
 	}
 	return log.Entries[i-log.beginIndex()]
@@ -65,6 +66,7 @@ func (log *Log) getEntryTerm(i int) int {
 	if i == log.LastIncludedIndex {
 		return log.LastIncludedTerm
 	}
+	//println("getEntryTerm")
 	return log.get(i).Term
 }
 
@@ -183,7 +185,7 @@ const (
 const (
 	MinElectionTimeOut          int = 250
 	MaxElectionTimeOut          int = 450
-	HeartbeatPeriodTime         int = 60
+	HeartbeatPeriodTime         int = 100
 	CommitIndexUpdatePeriodTime int = 10
 )
 
@@ -217,6 +219,7 @@ type Raft struct {
 	matchIndex []int // index of highest log entry known to be replicated on server
 
 	heartBeatFlag bool
+	heartTimer    *time.Timer
 	// heartBeatCnt int
 	// heartBeatMu sync.Mutex
 
@@ -445,6 +448,7 @@ func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *AppendEntryRep
 	rf.log.LastIncludedTerm = args.LastIncludeTerm
 	rf.snapshotData = args.Data
 	fmt.Printf("server %v commit snopshot to lastIncludedIndex %v\n", rf.me, args.LastIncludedIndex)
+
 	*rf.applyCh <- ApplyMsg{
 		SnapshotValid: true,
 		Snapshot:      args.Data,
@@ -482,7 +486,8 @@ type AppendEntryReply struct {
 func (rf *Raft) AppendEntries(args *AppendEntryArgs, reply *AppendEntryReply) {
 	fmt.Printf("server %v receives appendEntry from leader %v prevLogIndex %v\n", rf.me, args.LeaderId, args.PrevLogIndex)
 	rf.mu.Lock()
-	//fmt.Printf("server %v acquire appendEntry lock succeed\n", rf.me)
+	fmt.Printf("server %v acquire appendEntry lock succeed\n", rf.me)
+	defer fmt.Printf("server %v release appendEntry lock succeed\n", rf.me)
 	//defer fmt.Printf("server %v receives appendEntry from leader %v finished\n", rf.me, args.LeaderId)
 	defer rf.mu.Unlock()
 	reply.Term = rf.currentTerm
@@ -534,7 +539,7 @@ func (rf *Raft) AppendEntries(args *AppendEntryArgs, reply *AppendEntryReply) {
 		}
 		reply.Success = false
 	} else {
-		fmt.Printf("current commitIndex %v lastIncludedIndex %v snapshot exists ? %v\n", rf.commitIndex, rf.log.LastIncludedIndex, rf.snapshotData != nil)
+		// fmt.Printf("current commitIndex %v lastIncludedIndex %v snapshot exists ? %v\n", rf.commitIndex, rf.log.LastIncludedIndex, rf.snapshotData != nil)
 		if rf.commitIndex < rf.log.LastIncludedIndex {
 			rf.log.printLogInfo()
 		}
@@ -548,14 +553,38 @@ func (rf *Raft) AppendEntries(args *AppendEntryArgs, reply *AppendEntryReply) {
 		rf.persist()
 		if args.LeaderCommit > rf.commitIndex {
 			newCommitIndex := min(args.LeaderCommit, rf.log.getLastIndex())
+			// 用select改一下，避免applyCH太满了
+			/*nxtCommitIndex := newCommitIndex
+			flag := false
 			for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
-				fmt.Printf("follower server %v commit index %v command %v \n", rf.me, i, rf.log.get(i).Command)
+				select {
+				case *rf.applyCh <- ApplyMsg{
+					CommandValid: true,
+					Command:      rf.log.get(i).Command,
+					CommandIndex: i,
+				}:
+					fmt.Printf("follower server %v commit index %v command %v \n", rf.me, i, rf.log.get(i).Command)
+					continue
+				default:
+					nxtCommitIndex = i - 1
+					flag = true
+					fmt.Printf("server %v applyCh is full \n", rf.me)
+					break
+
+				}
+				if flag {
+					break
+				}
+			}
+			rf.commitIndex = nxtCommitIndex*/
+			//------------
+			for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
+				fmt.Printf("leader server %v commit index %v command %v\n", rf.me, i, rf.log.get(i).Command)
 				*rf.applyCh <- ApplyMsg{
 					CommandValid: true,
 					Command:      rf.log.get(i).Command,
 					CommandIndex: i,
 				}
-				fmt.Printf("follower server %v commit index %v command %v succeed\n", rf.me, i, rf.log.get(i).Command)
 			}
 			rf.commitIndex = newCommitIndex
 		}
@@ -600,12 +629,13 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	isLeader = rf.state == Leader
 	term = rf.currentTerm
 	if isLeader {
-		fmt.Printf("append command %v\n", command)
+		fmt.Printf("server %v append command %v\n", rf.me, command)
 		// append
 		index = rf.log.getNextIndex()
 		rf.log.appendEntry(LogEntry{Term: term, Command: command})
 		rf.persist()
 		fmt.Printf("len(log) = %v\n", rf.log.getLastIndex())
+		rf.ResetHeartTimer(5)
 	}
 	rf.mu.Unlock()
 
@@ -770,16 +800,22 @@ func (rf *Raft) leaderInit() {
 }
 
 func (rf *Raft) leaderSendAppendEntries() {
-	fmt.Printf("server %v term %v send appendEntries\n", rf.me, rf.currentTerm)
+	// fmt.Printf("server %v term %v send appendEntries\n", rf.me, rf.currentTerm)
 
 	for rf.getState() == Leader && !rf.killed() {
+		// fmt.Printf("server %v term %v send appendEntries\n", rf.me, rf.currentTerm)
+		// rf.printAllInfo()
 
 		for i := 0; i < len(rf.peers); i++ {
 			if i == rf.me {
 				continue
 			}
+			fmt.Printf("server %v term %v send appendEntries to server %v\n", rf.me, rf.currentTerm, i)
 			if rf.nextIndex[i] <= rf.log.LastIncludedIndex {
 				// send snopshot instead
+				if rf.getState() != Leader {
+					return
+				}
 				rf.mu.Lock()
 				term := rf.currentTerm
 				id := rf.me
@@ -788,6 +824,9 @@ func (rf *Raft) leaderSendAppendEntries() {
 				data := rf.snapshotData
 				rf.mu.Unlock()
 				// sendInstallSnapshot
+				if rf.getState() != Leader {
+					return
+				}
 				go func(i, term, id, lastIncludedIndex, lastIncludedTerm int, data []byte) {
 					args := InstallSnapshotArgs{
 						Term:              term,
@@ -806,7 +845,12 @@ func (rf *Raft) leaderSendAppendEntries() {
 				}(i, term, id, lastIncludedIndex, lastIncludedTerm, data)
 				continue
 			}
+			if rf.getState() != Leader {
+				return
+			}
 			rf.mu.Lock()
+			// rf.printAllInfo()
+			fmt.Printf("server %v, nextIndex %v \n", i, rf.nextIndex[i])
 			entries := rf.log.getL(rf.nextIndex[i])
 			term := rf.currentTerm
 			id := rf.me
@@ -838,8 +882,14 @@ func (rf *Raft) leaderSendAppendEntries() {
 		}
 		// update leader's commitIndex
 		// search for matchIndex, and find middle one
-		time.Sleep(getDuration(HeartbeatPeriodTime))
+		// time.Sleep(getDuration(HeartbeatPeriodTime))
+		rf.ResetHeartTimer(HeartbeatPeriodTime)
+		<-rf.heartTimer.C
 	}
+}
+
+func (rf *Raft) ResetHeartTimer(timeStamp int) {
+	rf.heartTimer.Reset(time.Duration(timeStamp) * time.Millisecond)
 }
 
 func (rf *Raft) updateLeaderCommitIndex() {
@@ -850,7 +900,6 @@ func (rf *Raft) updateLeaderCommitIndex() {
 		rf.mu.Unlock()
 		go func() {
 			rf.mu.Lock()
-			defer rf.mu.Unlock()
 			tmp := make([]int, len(rf.matchIndex))
 			for i, v := range rf.matchIndex {
 				tmp[i] = v
@@ -859,6 +908,30 @@ func (rf *Raft) updateLeaderCommitIndex() {
 			newCommitIndex := tmp[len(rf.matchIndex)/2]
 			if newCommitIndex > rf.commitIndex &&
 				rf.log.getEntryTerm(newCommitIndex) == rf.currentTerm {
+				// -------------------
+				/*nxtCommitIndex := newCommitIndex
+				flag := false
+				for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
+					select {
+					case *rf.applyCh <- ApplyMsg{
+						CommandValid: true,
+						Command:      rf.log.get(i).Command,
+						CommandIndex: i,
+					}:
+						fmt.Printf("follower server %v commit index %v command %v \n", rf.me, i, rf.log.get(i).Command)
+						continue
+					default:
+						nxtCommitIndex = i - 1
+						fmt.Printf("server %v applyCh is full \n", rf.me)
+						flag = true
+						break
+					}
+					if flag {
+						break
+					}
+				}
+				rf.commitIndex = nxtCommitIndex*/
+
 				for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
 					fmt.Printf("leader server %v commit index %v command %v\n", rf.me, i, rf.log.get(i).Command)
 					*rf.applyCh <- ApplyMsg{
@@ -869,6 +942,7 @@ func (rf *Raft) updateLeaderCommitIndex() {
 				}
 				rf.commitIndex = newCommitIndex
 			}
+			rf.mu.Unlock()
 		}()
 		time.Sleep(getDuration(CommitIndexUpdatePeriodTime))
 	}
@@ -1006,6 +1080,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 		applyCh:       &applyCh,
 		cnt:           make(map[int]int),
 		snapshotData:  nil,
+		heartTimer:    time.NewTimer(getDuration(0)),
 		// heartBeatCnt: 0,
 	}
 

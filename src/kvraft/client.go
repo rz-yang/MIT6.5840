@@ -16,7 +16,7 @@ type Clerk struct {
 	servers []*labrpc.ClientEnd
 	// You will have to modify this struct.
 	leaderId int
-	clerkId  int
+	clerkId  int64
 	seq      int
 	// cntServers int
 }
@@ -34,10 +34,16 @@ func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
 		servers:  servers,
 		leaderId: 0,
 		// cntServers: len(servers),
-		seq: 0,
+		seq:     0,
+		clerkId: nrand(),
 	}
 	// You'll have to add code here.
 	return &ck
+}
+
+func (ck *Clerk) GetSeq() int {
+	ck.seq++
+	return ck.seq
 }
 
 // fetch the current value for a key.
@@ -55,29 +61,35 @@ func (ck *Clerk) Get(key string) string {
 	// You will have to modify this function.
 	//fmt.Printf("Get key:%v\n", key)
 	args := GetArgs{
-		Key: key,
-		Seq: ck.seq,
+		Key:     key,
+		Seq:     ck.GetSeq(),
+		ClerkId: ck.clerkId,
 	}
-	ck.seq++
 
 	for {
 		reply := GetReply{}
 		ok := ck.servers[ck.leaderId].Call("KVServer.Get", &args, &reply)
 		if ok {
-			if reply.Err == ErrWrongLeader {
-				fmt.Printf("ErrWrongLeader id: %v, tryNewLeader: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
+			switch reply.Err {
+			case ErrWrongLeader, ErrTermChanged:
+				fmt.Printf("Leader %v changed, tryNewLeader: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
 				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
-				time.Sleep(time.Duration(TryNextNodeTime) * time.Millisecond)
+				time.Sleep(TryNextNodeTime * time.Millisecond)
 				continue
-			} else if reply.Err == ErrTermChanged {
-				fmt.Printf("Leader term %v changed, tryNewLeader: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
-				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
-				time.Sleep(time.Duration(TryNextNodeTime) * time.Millisecond)
+			case ErrTimeOut:
+				fmt.Printf("err time out\n")
 				continue
+			case OK:
+				fmt.Printf("Get key:%v succeed (leaderid:%v)\n", key, ck.leaderId)
+				return reply.Value
 			}
+		} else {
+			fmt.Printf("cannot reach server %v, try server: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
+			ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
+			time.Sleep(TryNextNodeTime * time.Millisecond)
+			continue
 		}
-		fmt.Printf("Get key:%v succeed (leaderid:%v)\n", key, ck.leaderId)
-		return reply.Value
+
 	}
 
 }
@@ -94,30 +106,35 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 	// You will have to modify this function.
 	//fmt.Printf("%v key:%v val:%v\n", op, key, value)
 	args := PutAppendArgs{
-		Key:   key,
-		Value: value,
-		Op:    op,
-		Seq:   ck.seq,
+		Key:     key,
+		Value:   value,
+		Op:      op,
+		Seq:     ck.GetSeq(),
+		ClerkId: ck.clerkId,
 	}
-	ck.seq++
 	for {
 		reply := PutAppendReply{}
 		ok := ck.servers[ck.leaderId].Call("KVServer.PutAppend", &args, &reply)
 		if ok {
-			if reply.Err == ErrWrongLeader {
-				fmt.Printf("ErrWrongLeader id: %v, tryNewLeader: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
+			switch reply.Err {
+			case ErrWrongLeader, ErrTermChanged:
+				fmt.Printf("Leader %v changed, tryNewLeader: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
 				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
-				time.Sleep(time.Duration(TryNextNodeTime) * time.Millisecond)
+				time.Sleep(TryNextNodeTime * time.Millisecond)
 				continue
-			} else if reply.Err == ErrTermChanged {
-				fmt.Printf("Leader term %v changed, tryNewLeader: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
-				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
-				time.Sleep(time.Duration(TryNextNodeTime) * time.Millisecond)
+			case ErrTimeOut:
+				fmt.Printf("err time out\n")
 				continue
+			case OK:
+				fmt.Printf("%v key:%v val:%v succeed (leaderid:%v)\n", op, key, value, ck.leaderId)
+				return
 			}
+		} else {
+			fmt.Printf("cannot reach server %v, try server: %v \n", ck.leaderId, (ck.leaderId+1)%len(ck.servers))
+			ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
+			time.Sleep(TryNextNodeTime * time.Millisecond)
+			continue
 		}
-		fmt.Printf("%v key:%v val:%v succeed (leaderid:%v)\n", op, key, value, ck.leaderId)
-		return
 	}
 }
 
