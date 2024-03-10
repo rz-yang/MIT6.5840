@@ -321,11 +321,13 @@ func (rf *Raft) readPersistSnapshot(data []byte) {
 func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	// Your code here (2D).
 	// 是否需要先判断apply到index了没有（应该不需要）
+	rf.mu.Lock()
 	fmt.Printf("server %v takes snopshot and discards logs before index %v\n", rf.me, index)
 	rf.log.discardBeforeAndIncludeIndex(index)
 	rf.snapshotData = snapshot
 	rf.persist()
 	fmt.Printf("server %v finished snopshot\n", rf.me)
+	rf.mu.Unlock()
 
 }
 
@@ -449,6 +451,7 @@ func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *AppendEntryRep
 	rf.log.LastIncludedIndex = args.LastIncludedIndex
 	rf.log.LastIncludedTerm = args.LastIncludeTerm
 	rf.lastApplied = rf.log.LastIncludedIndex
+	rf.commitIndex = rf.log.LastIncludedIndex
 	rf.snapshotData = args.Data
 	fmt.Printf("server %v commit snopshot to lastIncludedIndex %v\n", rf.me, args.LastIncludedIndex)
 
@@ -460,7 +463,6 @@ func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *AppendEntryRep
 		SnapshotIndex: args.LastIncludedIndex,
 	}
 	rf.persist()
-	rf.commitIndex = rf.log.LastIncludedIndex
 
 }
 func (rf *Raft) sendInstallSnapshot(server int, args *InstallSnapshotArgs, reply *InstallSnapshotReply) bool {
