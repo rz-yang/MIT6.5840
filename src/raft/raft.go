@@ -187,7 +187,7 @@ const (
 	MaxElectionTimeOut          int = 450
 	HeartbeatPeriodTime         int = 100
 	CommitIndexUpdatePeriodTime int = 10
-	applyWaitingTime            int = 20
+	applyWaitingTime            int = 5
 )
 
 // A Go object implementing a single Raft peer.
@@ -816,23 +816,27 @@ func (rf *Raft) leaderSendAppendEntries() {
 			if i == rf.me {
 				continue
 			}
+			rf.mu.Lock()
+			if rf.state != Leader {
+				rf.mu.Unlock()
+				return
+			}
 			fmt.Printf("server %v term %v send appendEntries to server %v\n", rf.me, rf.currentTerm, i)
 			if rf.nextIndex[i] <= rf.log.LastIncludedIndex {
 				// send snopshot instead
-				if rf.getState() != Leader {
+				/*if rf.getState() != Leader {
 					return
-				}
-				rf.mu.Lock()
+				}*/
 				term := rf.currentTerm
 				id := rf.me
 				lastIncludedIndex := rf.log.LastIncludedIndex
 				lastIncludedTerm := rf.log.LastIncludedTerm
 				data := rf.snapshotData
-				rf.mu.Unlock()
 				// sendInstallSnapshot
-				if rf.getState() != Leader {
+				/*if rf.getState() != Leader {
 					return
-				}
+				}*/
+				rf.mu.Unlock()
 				go func(i, term, id, lastIncludedIndex, lastIncludedTerm int, data []byte) {
 					args := InstallSnapshotArgs{
 						Term:              term,
@@ -851,10 +855,6 @@ func (rf *Raft) leaderSendAppendEntries() {
 				}(i, term, id, lastIncludedIndex, lastIncludedTerm, data)
 				continue
 			}
-			if rf.getState() != Leader {
-				return
-			}
-			rf.mu.Lock()
 			// rf.printAllInfo()
 			fmt.Printf("server %v, nextIndex %v \n", i, rf.nextIndex[i])
 			entries := rf.log.getL(rf.nextIndex[i])
@@ -1129,7 +1129,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 				}
 				command := rf.log.get(index).Command
 				rf.mu.Unlock()
-				fmt.Printf("server %v commit index %v command %v\n", rf.me, index, rf.log.get(index).Command)
+				fmt.Printf("server %v commit index %v command %v\n", rf.me, index, command)
 				*rf.applyCh <- ApplyMsg{
 					CommandValid: true,
 					Command:      command,
