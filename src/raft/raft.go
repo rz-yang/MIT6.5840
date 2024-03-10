@@ -906,12 +906,12 @@ func (rf *Raft) updateLeaderCommitIndex() {
 		//rf.mu.Unlock()
 		//go func() {
 		//rf.mu.Lock()
-		tmp := make([]int, len(rf.matchIndex))
+		tmp := make([]int, len(rf.peers))
 		for i, v := range rf.matchIndex {
 			tmp[i] = v
 		}
 		sort.Ints(tmp)
-		newCommitIndex := tmp[len(rf.matchIndex)/2]
+		newCommitIndex := tmp[(len(rf.peers)-1)/2]
 		if newCommitIndex > rf.commitIndex &&
 			rf.log.getEntryTerm(newCommitIndex) == rf.currentTerm {
 			// -------------------
