@@ -187,6 +187,7 @@ const (
 	MaxElectionTimeOut          int = 450
 	HeartbeatPeriodTime         int = 100
 	CommitIndexUpdatePeriodTime int = 10
+	applyWaitingTime            int = 10
 )
 
 // A Go object implementing a single Raft peer.
@@ -319,6 +320,7 @@ func (rf *Raft) readPersistSnapshot(data []byte) {
 // that index. Raft should now trim its log as much as possible.
 func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	// Your code here (2D).
+	// 是否需要先判断apply到index了没有（应该不需要）
 	fmt.Printf("server %v takes snopshot and discards logs before index %v\n", rf.me, index)
 	rf.log.discardBeforeAndIncludeIndex(index)
 	rf.snapshotData = snapshot
@@ -446,9 +448,11 @@ func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *AppendEntryRep
 	rf.log.setL(rf.log.getLastIndex() + 1)
 	rf.log.LastIncludedIndex = args.LastIncludedIndex
 	rf.log.LastIncludedTerm = args.LastIncludeTerm
+	rf.lastApplied = rf.log.LastIncludedIndex
 	rf.snapshotData = args.Data
 	fmt.Printf("server %v commit snopshot to lastIncludedIndex %v\n", rf.me, args.LastIncludedIndex)
 
+	// 从snapshot中恢复状态机
 	*rf.applyCh <- ApplyMsg{
 		SnapshotValid: true,
 		Snapshot:      args.Data,
@@ -578,14 +582,14 @@ func (rf *Raft) AppendEntries(args *AppendEntryArgs, reply *AppendEntryReply) {
 			}
 			rf.commitIndex = nxtCommitIndex*/
 			//------------
-			for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
+			/*for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
 				fmt.Printf("leader server %v commit index %v command %v\n", rf.me, i, rf.log.get(i).Command)
 				*rf.applyCh <- ApplyMsg{
 					CommandValid: true,
 					Command:      rf.log.get(i).Command,
 					CommandIndex: i,
 				}
-			}
+			}*/
 			rf.commitIndex = newCommitIndex
 		}
 		reply.Success = true
@@ -932,14 +936,14 @@ func (rf *Raft) updateLeaderCommitIndex() {
 				}
 				rf.commitIndex = nxtCommitIndex*/
 
-				for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
+				/*for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
 					fmt.Printf("leader server %v commit index %v command %v\n", rf.me, i, rf.log.get(i).Command)
 					*rf.applyCh <- ApplyMsg{
 						CommandValid: true,
 						Command:      rf.log.get(i).Command,
 						CommandIndex: i,
 					}
-				}
+				}*/
 				rf.commitIndex = newCommitIndex
 			}
 			rf.mu.Unlock()
@@ -1050,6 +1054,10 @@ func getDuration(t int) time.Duration {
 	return time.Duration(t) * time.Millisecond
 }
 
+func (rf *Raft) getSnapShot() []byte {
+	return rf.snapshotData
+}
+
 // the service or tester wants to create a Raft server. the ports
 // of all the Raft servers (including this one) are in peers[]. this
 // server's port is peers[me]. all the servers' peers[] arrays
@@ -1096,6 +1104,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 			SnapshotIndex: rf.log.LastIncludedIndex,
 		}*/
 		rf.commitIndex = rf.log.LastIncludedIndex
+		rf.lastApplied = rf.log.LastIncludedIndex
 		fmt.Printf("server %v finishes recovery\n", rf.me)
 	} else {
 		fmt.Printf("server %v no snopshot yet\n", rf.me)
@@ -1103,6 +1112,27 @@ func Make(peers []*labrpc.ClientEnd, me int,
 
 	// start ticker goroutine to start elections
 	go rf.ticker()
+	go func() {
+		for {
+			rf.mu.Lock()
+			commitIndex := rf.commitIndex
+			rf.mu.Unlock()
+			for rf.lastApplied < commitIndex {
+				index := rf.lastApplied + 1
+				fmt.Printf("leader server %v commit index %v command %v\n", rf.me, index, rf.log.get(index).Command)
+				*rf.applyCh <- ApplyMsg{
+					CommandValid: true,
+					Command:      rf.log.get(index).Command,
+					CommandIndex: index,
+				}
+				rf.mu.Lock()
+				rf.lastApplied++
+				rf.mu.Unlock()
+			}
+			time.Sleep(getDuration(applyWaitingTime))
+
+		}
+	}()
 
 	return rf
 }
