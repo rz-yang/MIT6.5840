@@ -322,6 +322,11 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	// Your code here (2D).
 	// 是否需要先判断apply到index了没有（应该不需要）
 	rf.mu.Lock()
+	if index < rf.log.beginIndex() {
+		fmt.Printf("server %v refuses to take snopshot because the snapshot is too old%v\n", rf.me, index)
+		rf.mu.Unlock()
+		return
+	}
 	fmt.Printf("server %v takes snopshot and discards logs before index %v\n", rf.me, index)
 	rf.log.discardBeforeAndIncludeIndex(index)
 	rf.snapshotData = snapshot
