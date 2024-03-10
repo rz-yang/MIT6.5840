@@ -187,7 +187,7 @@ const (
 	MaxElectionTimeOut          int = 450
 	HeartbeatPeriodTime         int = 100
 	CommitIndexUpdatePeriodTime int = 10
-	applyWaitingTime            int = 10
+	applyWaitingTime            int = 20
 )
 
 // A Go object implementing a single Raft peer.
@@ -903,53 +903,53 @@ func (rf *Raft) updateLeaderCommitIndex() {
 		rf.mu.Lock()
 		rf.nextIndex[rf.me] = rf.log.getNextIndex()
 		rf.matchIndex[rf.me] = rf.log.getLastIndex()
-		rf.mu.Unlock()
-		go func() {
-			rf.mu.Lock()
-			tmp := make([]int, len(rf.matchIndex))
-			for i, v := range rf.matchIndex {
-				tmp[i] = v
-			}
-			sort.Ints(tmp)
-			newCommitIndex := tmp[len(rf.matchIndex)/2]
-			if newCommitIndex > rf.commitIndex &&
-				rf.log.getEntryTerm(newCommitIndex) == rf.currentTerm {
-				// -------------------
-				/*nxtCommitIndex := newCommitIndex
-				flag := false
-				for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
-					select {
-					case *rf.applyCh <- ApplyMsg{
-						CommandValid: true,
-						Command:      rf.log.get(i).Command,
-						CommandIndex: i,
-					}:
-						fmt.Printf("follower server %v commit index %v command %v \n", rf.me, i, rf.log.get(i).Command)
-						continue
-					default:
-						nxtCommitIndex = i - 1
-						fmt.Printf("server %v applyCh is full \n", rf.me)
-						flag = true
-						break
-					}
-					if flag {
-						break
-					}
+		//rf.mu.Unlock()
+		//go func() {
+		//rf.mu.Lock()
+		tmp := make([]int, len(rf.matchIndex))
+		for i, v := range rf.matchIndex {
+			tmp[i] = v
+		}
+		sort.Ints(tmp)
+		newCommitIndex := tmp[len(rf.matchIndex)/2]
+		if newCommitIndex > rf.commitIndex &&
+			rf.log.getEntryTerm(newCommitIndex) == rf.currentTerm {
+			// -------------------
+			/*nxtCommitIndex := newCommitIndex
+			flag := false
+			for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
+				select {
+				case *rf.applyCh <- ApplyMsg{
+					CommandValid: true,
+					Command:      rf.log.get(i).Command,
+					CommandIndex: i,
+				}:
+					fmt.Printf("follower server %v commit index %v command %v \n", rf.me, i, rf.log.get(i).Command)
+					continue
+				default:
+					nxtCommitIndex = i - 1
+					fmt.Printf("server %v applyCh is full \n", rf.me)
+					flag = true
+					break
 				}
-				rf.commitIndex = nxtCommitIndex*/
-
-				/*for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
-					fmt.Printf("leader server %v commit index %v command %v\n", rf.me, i, rf.log.get(i).Command)
-					*rf.applyCh <- ApplyMsg{
-						CommandValid: true,
-						Command:      rf.log.get(i).Command,
-						CommandIndex: i,
-					}
-				}*/
-				rf.commitIndex = newCommitIndex
+				if flag {
+					break
+				}
 			}
-			rf.mu.Unlock()
-		}()
+			rf.commitIndex = nxtCommitIndex*/
+
+			/*for i := rf.commitIndex + 1; i <= newCommitIndex; i++ {
+				fmt.Printf("leader server %v commit index %v command %v\n", rf.me, i, rf.log.get(i).Command)
+				*rf.applyCh <- ApplyMsg{
+					CommandValid: true,
+					Command:      rf.log.get(i).Command,
+					CommandIndex: i,
+				}
+			}*/
+			rf.commitIndex = newCommitIndex
+		}
+		rf.mu.Unlock()
+		//}()
 		time.Sleep(getDuration(CommitIndexUpdatePeriodTime))
 	}
 
@@ -1118,13 +1118,21 @@ func Make(peers []*labrpc.ClientEnd, me int,
 		for {
 			rf.mu.Lock()
 			commitIndex := rf.commitIndex
+			// lstApplied := rf.lastApplied
 			rf.mu.Unlock()
-			for rf.lastApplied < commitIndex {
+			for rf.getLastApplied() < commitIndex {
+				rf.mu.Lock()
 				index := rf.lastApplied + 1
-				fmt.Printf("leader server %v commit index %v command %v\n", rf.me, index, rf.log.get(index).Command)
+				if index > commitIndex {
+					rf.mu.Unlock()
+					break
+				}
+				command := rf.log.get(index).Command
+				rf.mu.Unlock()
+				fmt.Printf("server %v commit index %v command %v\n", rf.me, index, rf.log.get(index).Command)
 				*rf.applyCh <- ApplyMsg{
 					CommandValid: true,
-					Command:      rf.log.get(index).Command,
+					Command:      command,
 					CommandIndex: index,
 				}
 				rf.mu.Lock()
@@ -1137,4 +1145,11 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	}()
 
 	return rf
+}
+
+func (rf *Raft) getLastApplied() int {
+	rf.mu.Lock()
+	lstApplied := rf.lastApplied
+	rf.mu.Unlock()
+	return lstApplied
 }
