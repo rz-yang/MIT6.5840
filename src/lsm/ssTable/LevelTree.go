@@ -2,8 +2,11 @@ package ssTable
 
 import (
 	"fmt"
+	"log"
+	"path/filepath"
 	"raft_LSMTree-based_KVStore/lsm/kv"
 	"sync"
+	"time"
 )
 
 // SSTable层次树
@@ -60,6 +63,50 @@ func (tree *LevelTree) Insert(table *SSTable, level int) int {
 	}
 	tree.levelsTail[level] = newNode
 	return newNode.index
+}
+
+// 加载db文件到LevelTree，生成索引
+func (tree *LevelTree) loadDbFile(path string) {
+	tree.mutex.Lock()
+	defer tree.mutex.Unlock()
+	log.Println("Load levelTree from", path)
+	start := time.Now()
+	defer func() {
+		elapse := time.Since(start)
+		log.Printf("Load the %v, time consuming %v", path, elapse)
+	}()
+
+	level, index, err := getLevel(filepath.Base(path))
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	table := &SSTable{}
+	table.Init(path)
+	newNode := &tableNode{
+		index: index,
+		table: table,
+	}
+	currentNode := tree.levelsTail[level]
+	if currentNode == nil {
+		tree.levelsTail[level] = newNode
+		return
+	}
+	if currentNode.index < index {
+		newNode.prev = currentNode
+		tree.levelsTail[level] = newNode
+		return
+	}
+
+	for currentNode != nil {
+		if currentNode.prev == nil || currentNode.prev.index < index {
+			newNode.prev = currentNode.prev
+			currentNode.prev = newNode
+			return
+		} else {
+			currentNode = currentNode.prev
+		}
+	}
 }
 
 func getLevel(name string) (level int, index int, err error) {

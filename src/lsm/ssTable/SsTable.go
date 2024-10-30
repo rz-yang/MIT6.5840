@@ -49,6 +49,7 @@ func (p IndexedPositions) Swap(i, j int) {
 func (table *SSTable) Init(filePath string) {
 	table.filePath = filePath
 	table.mutex = sync.RWMutex{}
+	table.loadFileHandle()
 }
 
 // 加载文件句柄
