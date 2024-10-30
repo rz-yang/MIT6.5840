@@ -42,7 +42,6 @@ func NewSkipList() *SkipList {
 		SkipNode: SkipNode{},
 		mutex:    sync.RWMutex{},
 	}
-	// skipList.update = make([]*SkipNode, skipList.maxL)
 	skipList.SkipNode.next = make([]*SkipNode, skipList.maxL)
 	return skipList
 }
@@ -167,4 +166,35 @@ func (list *SkipList) Delete(key string) (interface{}, bool) {
 
 	list.length--
 	return node.value, true
+}
+
+// clear不加锁，内部函数，不暴露
+func (list *SkipList) clear() {
+	list.maxL = 32
+	list.skip = 2
+	list.curLevel = 0
+	list.length = 0
+	list.SkipNode = SkipNode{}
+	list.mutex = sync.RWMutex{}
+	list.SkipNode.next = make([]*SkipNode, list.maxL)
+}
+
+func (list *SkipList) Copy() *SkipList {
+	return &SkipList{
+		maxL:     list.maxL,
+		skip:     list.skip,
+		curLevel: list.curLevel,
+		length:   list.length,
+		SkipNode: list.SkipNode,
+		mutex:    sync.RWMutex{},
+	}
+}
+
+// 进行一次拷贝和数据迁移，然后再进行初始化所有的数据
+func (list *SkipList) Swap() *SkipList {
+	list.mutex.Lock()
+	defer list.mutex.Unlock()
+	iMemableList := list.Copy()
+	list.clear()
+	return iMemableList
 }
