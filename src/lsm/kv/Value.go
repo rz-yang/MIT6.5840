@@ -2,6 +2,15 @@ package kv
 
 import "encoding/json"
 
+type SearchResult int
+
+const (
+	// 未找到None
+	KeyNotFound SearchResult = iota
+	Deleted
+	Success
+)
+
 type Value struct {
 	Key     string
 	Value   []byte
@@ -15,6 +24,10 @@ func (v *Value) Copy() *Value {
 		Value:   v.Value,
 		Deleted: v.Deleted,
 	}
+}
+
+func Convert[T any](value T) ([]byte, error) {
+	return json.Marshal(value)
 }
 
 // 返回json编码

@@ -1,3 +1,3 @@
-module 6.5840
+module raft_LSMTree-based_KVStore
 
-go 1.15
+go 1.18
