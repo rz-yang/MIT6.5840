@@ -14,7 +14,7 @@ type Database struct {
 	// 只读内存表
 	IMemTable *ReadOnlyMemTables
 	// SSTable
-	levelTree *ssTable.LevelTree
+	LevelTree *ssTable.LevelTree
 }
 
 // 数据库全局唯一实例

@@ -198,3 +198,9 @@ func (list *SkipList) Swap() *SkipList {
 	list.clear()
 	return iMemableList
 }
+
+func (list *SkipList) Len() int {
+	list.mutex.RLock()
+	defer list.mutex.RUnlock()
+	return list.length
+}

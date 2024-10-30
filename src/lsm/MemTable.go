@@ -41,7 +41,7 @@ func (m *MemTable) Search(key string) (kv.Value, kv.SearchResult) {
 	return convertedVal, res
 }
 
-func (m *MemTable) Set(key string, value []byte) (kv.Value, bool) {
+func (m *MemTable) Set(key string, value []byte) (kv.Value, bool, bool) {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
 	node := kv.Value{Key: key, Value: value, Deleted: false}
@@ -51,7 +51,15 @@ func (m *MemTable) Set(key string, value []byte) (kv.Value, bool) {
 		fmt.Printf("error converting %v to (kv.Value)\n", oldValue)
 	}
 	m.Wal.Write(node)
-	return oldKVValue, hasOld
+
+	needSwap := false
+	globalConfig := config.GetConfig()
+	if m.MemoryList.Len() >= globalConfig.Threshold {
+		// 此时需要进行swap()操作
+		needSwap = true
+	}
+
+	return oldKVValue, hasOld, needSwap
 }
 
 func (m *MemTable) Delete(key string) (kv.Value, bool) {
@@ -70,7 +78,7 @@ func (m *MemTable) Delete(key string) (kv.Value, bool) {
 
 // 生成IMemTable，并清空MemTable
 func (m *MemTable) swap() *IMemTable {
-	config := config.GetConfig()
+	globalConfig := config.GetConfig()
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
 	iList := m.MemoryList.Swap()
@@ -80,7 +88,21 @@ func (m *MemTable) swap() *IMemTable {
 		Wal:        m.Wal,
 	}
 	newWal := &wal.Wal{}
-	newWal.Init(config.DataDir)
+	newWal.Init(globalConfig.DataDir)
+	m.Wal = newWal
+	return iTable
+}
+
+func (m *MemTable) swapWithoutLock() *IMemTable {
+	globalConfig := config.GetConfig()
+	iList := m.MemoryList.Swap()
+	// 创建iMemableTable
+	iTable := &IMemTable{
+		MemoryList: iList,
+		Wal:        m.Wal,
+	}
+	newWal := &wal.Wal{}
+	newWal.Init(globalConfig.DataDir)
 	m.Wal = newWal
 	return iTable
 }

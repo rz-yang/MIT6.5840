@@ -14,6 +14,10 @@ type Config struct {
 	MaxLevel int
 	// 每层中 SsTable 表数量的阈值，该层 SsTable 将会被压缩到下一层
 	PartSize int
+	// 周期性check
+	CheckInterval int
+	// 设置的最大转为immutable的threshold，这里的定义为元素数量
+	Threshold int
 }
 
 var once *sync.Once = &sync.Once{}
