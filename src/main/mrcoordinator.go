@@ -9,7 +9,7 @@ package main
 // Please do not change this file.
 //
 
-import "6.5840/mr"
+import "raft_LSMTree-based_KVStore/mr"
 import "time"
 import "os"
 import "fmt"

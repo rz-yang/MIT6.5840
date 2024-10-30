@@ -1,7 +1,7 @@
 package shardctrler
 
-import "6.5840/labrpc"
-import "6.5840/raft"
+import "raft_LSMTree-based_KVStore/labrpc"
+import "raft_LSMTree-based_KVStore/raft"
 import "testing"
 import "os"
 

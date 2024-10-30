@@ -5,7 +5,7 @@ package main
 //
 
 import "time"
-import "6.5840/viewservice"
+import "raft_LSMTree-based_KVStore/viewservice"
 import "os"
 import "fmt"
 

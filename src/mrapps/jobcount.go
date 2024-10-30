@@ -8,7 +8,7 @@ package main
 // go build -buildmode=plugin crash.go
 //
 
-import "6.5840/mr"
+import "raft_LSMTree-based_KVStore/mr"
 import "math/rand"
 import "strings"
 import "strconv"

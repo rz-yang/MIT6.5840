@@ -18,10 +18,10 @@ package raft
 //
 
 import (
-	"6.5840/labgob"
 	"bytes"
 	"fmt"
 	"os"
+	"raft_LSMTree-based_KVStore/labgob"
 	"sort"
 
 	//	"bytes"
@@ -31,7 +31,7 @@ import (
 	"time"
 
 	//	"6.5840/labgob"
-	"6.5840/labrpc"
+	"raft_LSMTree-based_KVStore/labrpc"
 )
 
 type LogEntry struct {

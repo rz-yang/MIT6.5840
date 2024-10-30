@@ -8,8 +8,8 @@ package raft
 // test with the original before submitting.
 //
 
-import "6.5840/labgob"
-import "6.5840/labrpc"
+import "raft_LSMTree-based_KVStore/labgob"
+import "raft_LSMTree-based_KVStore/labrpc"
 import "bytes"
 import "log"
 import "sync"

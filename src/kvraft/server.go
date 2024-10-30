@@ -1,12 +1,12 @@
 package kvraft
 
 import (
-	"6.5840/labgob"
-	"6.5840/labrpc"
-	"6.5840/raft"
 	"bytes"
 	"fmt"
 	"log"
+	"raft_LSMTree-based_KVStore/labgob"
+	"raft_LSMTree-based_KVStore/labrpc"
+	"raft_LSMTree-based_KVStore/raft"
 	"sync"
 	"sync/atomic"
 	"time"

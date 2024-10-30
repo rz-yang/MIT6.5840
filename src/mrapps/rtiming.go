@@ -7,7 +7,7 @@ package main
 // go build -buildmode=plugin rtiming.go
 //
 
-import "6.5840/mr"
+import "raft_LSMTree-based_KVStore/mr"
 import "fmt"
 import "os"
 import "syscall"

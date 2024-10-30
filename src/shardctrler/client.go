@@ -4,7 +4,7 @@ package shardctrler
 // Shardctrler clerk.
 //
 
-import "6.5840/labrpc"
+import "raft_LSMTree-based_KVStore/labrpc"
 import "time"
 import "crypto/rand"
 import "math/big"

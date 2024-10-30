@@ -1,8 +1,8 @@
 package kvraft
 
 import (
-	"6.5840/labrpc"
 	"fmt"
+	"raft_LSMTree-based_KVStore/labrpc"
 	"time"
 )
 import "crypto/rand"
