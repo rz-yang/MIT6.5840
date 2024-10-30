@@ -39,6 +39,7 @@ func NewSkipList() *SkipList {
 		curLevel: 0,
 		length:   0,
 		SkipNode: SkipNode{},
+		mutex:    sync.RWMutex{},
 	}
 	// skipList.update = make([]*SkipNode, skipList.maxL)
 	skipList.SkipNode.next = make([]*SkipNode, skipList.maxL)
