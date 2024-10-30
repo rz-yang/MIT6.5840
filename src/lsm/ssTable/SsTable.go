@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"raft_LSMTree-based_KVStore/lsm/kv"
 	"sort"
 	"strings"
 	"sync"
@@ -115,4 +116,45 @@ func (table *SSTable) loadSpareIndex() {
 	var p IndexedPositions = sortedString
 	sort.Sort(p)
 	table.sortedString = p
+}
+
+// 二分查找sst去寻找元素
+func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult) {
+	table.mutex.Lock()
+	defer table.mutex.Unlock()
+	lo, hi := 0, len(table.sortedString)
+	for lo <= hi {
+		mid := (lo + hi) / 2
+		if strings.Compare(table.sortedString[mid].key, key) <= 0 {
+			lo = mid + 1
+		} else {
+			hi = mid - 1
+		}
+	}
+
+	if hi < 0 || strings.Compare(table.sortedString[hi].key, key) != 0 {
+		return kv.Value{}, kv.KeyNotFound
+	}
+
+	if table.sortedString[hi].position.Deleted {
+		return kv.Value{}, kv.Deleted
+	}
+
+	// 否则从磁盘读取
+	position := table.sortedString[hi].position
+	bytes := make([]byte, position.Len)
+	_, err := table.f.Seek(position.Start, 0)
+	if err != nil {
+		log.Fatalf("error seek file %v", err)
+	}
+	_, err = table.f.Read(bytes)
+	if err != nil {
+		log.Fatalf("error read file %v", err)
+	}
+
+	value, err = kv.Decode(bytes)
+	if err != nil {
+		log.Fatalf("error decoding value %v", err)
+	}
+	return value, kv.Success
 }
