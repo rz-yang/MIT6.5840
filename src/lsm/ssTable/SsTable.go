@@ -24,7 +24,7 @@ type SSTable struct {
 	// ssTable排序后的key列表，作为索引结构
 	sortedString []IndexedPosition
 
-	mutex sync.Mutex
+	mutex sync.RWMutex
 }
 
 type IndexedPosition struct {
@@ -48,7 +48,7 @@ func (p IndexedPositions) Swap(i, j int) {
 
 func (table *SSTable) Init(filePath string) {
 	table.filePath = filePath
-	table.mutex = sync.Mutex{}
+	table.mutex = sync.RWMutex{}
 }
 
 // 加载文件句柄

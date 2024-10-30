@@ -8,6 +8,7 @@ import (
 
 // SSTable层次树
 type LevelTree struct {
+	count      []int
 	levelsTail []*tableNode
 
 	mutex sync.RWMutex
@@ -15,6 +16,7 @@ type LevelTree struct {
 
 // 每层的链表节点，指向每层的SSTable
 type tableNode struct {
+	index int
 	table *SSTable
 	prev  *tableNode
 }
@@ -45,6 +47,19 @@ func (tree *LevelTree) getCount(level int) int {
 		ptr = ptr.prev
 	}
 	return count
+}
+
+func (tree *LevelTree) Insert(table *SSTable, level int) int {
+	tree.mutex.Lock()
+	defer tree.mutex.Unlock()
+	tree.count[level]++
+	newNode := &tableNode{
+		table: table,
+		index: tree.count[level],
+		prev:  tree.levelsTail[level],
+	}
+	tree.levelsTail[level] = newNode
+	return newNode.index
 }
 
 func getLevel(name string) (level int, index int, err error) {
