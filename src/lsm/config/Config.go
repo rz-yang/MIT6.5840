@@ -6,6 +6,12 @@ import "sync"
 type Config struct {
 	// 数据目录
 	DataDir string
+	// 0 层的最大SSTable容量，单位为MB，超过该值会压入下一层，进行压缩操作
+	Level0Size int
+	// 层间的容量倍数
+	GrowTimes int
+	// 最大level层级
+	MaxLevel int
 }
 
 var once *sync.Once = &sync.Once{}
@@ -18,4 +24,20 @@ func Init(con Config) {
 
 func GetConfig() Config {
 	return config
+}
+
+func GetLevelMaxSize(level int) int {
+	return config.Level0Size * pow(config.GrowTimes, level)
+}
+
+func pow(a, b int) int {
+	ans := 0
+	for b > 0 {
+		if (b & 1) == 1 {
+			ans = ans * a
+		}
+		b >>= 1
+		a = a * a
+	}
+	return ans
 }
