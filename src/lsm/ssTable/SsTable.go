@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"sort"
+	"strings"
 	"sync"
 )
 
@@ -18,11 +19,30 @@ type SSTable struct {
 	// 元数据 与SSTable一一对应
 	tableMetaInfo MetaInfo
 	// 文件稀疏索引列表，用于确定元素位置
-	spareIndex map[string]Position
-	// ssTable排序后的key列表
-	sortedString []string
+	// spareIndex map[string]Position
+	// ssTable排序后的key列表，作为索引结构
+	sortedString []IndexedPosition
 
 	mutex sync.Mutex
+}
+
+type IndexedPosition struct {
+	key      string
+	position Position
+}
+
+type IndexedPositions []IndexedPosition
+
+func (p IndexedPositions) Len() int {
+	return len(p)
+}
+
+func (p IndexedPositions) Less(i, j int) bool {
+	return strings.Compare(p[i].key, p[j].key) < 0
+}
+
+func (p IndexedPositions) Swap(i, j int) {
+	p[i], p[j] = p[j], p[i]
 }
 
 func (table *SSTable) Init(filePath string) {
@@ -82,8 +102,8 @@ func (table *SSTable) loadSpareIndex() {
 	}
 
 	// 反序列化
-	table.spareIndex = make(map[string]Position)
-	err = json.Unmarshal(bytes, &table.spareIndex)
+	sortedString := make([]IndexedPosition, 0)
+	err = json.Unmarshal(bytes, &table.sortedString)
 	if err != nil {
 		log.Fatalf("error Unmarshal bytes to spareIndex %v", err)
 	}
@@ -92,11 +112,7 @@ func (table *SSTable) loadSpareIndex() {
 		log.Fatalf("error seek file %v", err)
 	}
 
-	keys := make([]string, 0, len(table.spareIndex))
-	for key := range table.spareIndex {
-		keys = append(keys, key)
-	}
-	sort.Strings(keys)
-	table.sortedString = keys
-
+	var p IndexedPositions = sortedString
+	sort.Sort(p)
+	table.sortedString = p
 }
