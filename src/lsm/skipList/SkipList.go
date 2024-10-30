@@ -2,6 +2,7 @@ package skipList
 
 import (
 	"math/rand"
+	"raft_LSMTree-based_KVStore/lsm/kv"
 	"strings"
 	"sync"
 )
@@ -45,7 +46,8 @@ func NewSkipList() *SkipList {
 	skipList.SkipNode.next = make([]*SkipNode, skipList.maxL)
 	return skipList
 }
-func (list *SkipList) Search(key string) interface{} {
+
+func (list *SkipList) Search(key string) (interface{}, kv.SearchResult) {
 	list.mutex.RLock()
 	defer list.mutex.RUnlock()
 	var head = &list.SkipNode
@@ -61,9 +63,9 @@ func (list *SkipList) Search(key string) interface{} {
 		}
 	}
 	if nxt != nil && nxt.key == key {
-		return nxt.value
+		return nxt.value, kv.Success
 	} else {
-		return nil
+		return nil, kv.KeyNotFound
 	}
 }
 
@@ -77,7 +79,7 @@ func (list *SkipList) randomLevel() int {
 	return i
 }
 
-func (list *SkipList) Insert(key string, value interface{}) {
+func (list *SkipList) Insert(key string, value interface{}) (interface{}, bool) {
 	list.mutex.Lock()
 	defer list.mutex.Unlock()
 
@@ -99,8 +101,9 @@ func (list *SkipList) Insert(key string, value interface{}) {
 
 	// 已存在
 	if nxt != nil && nxt.key == key {
+		lst := nxt.value
 		nxt.value = value
-		return
+		return lst, true
 	}
 
 	// 随机生成新节点的层数
@@ -125,9 +128,10 @@ func (list *SkipList) Insert(key string, value interface{}) {
 	}
 
 	list.length++
+	return nil, false
 }
 
-func (list *SkipList) Delete(key string) interface{} {
+func (list *SkipList) Delete(key string) (interface{}, bool) {
 	list.mutex.Lock()
 	defer list.mutex.Unlock()
 	var head = &list.SkipNode
@@ -147,7 +151,7 @@ func (list *SkipList) Delete(key string) interface{} {
 	}
 
 	if nxt == nil || nxt.key != key {
-		return nil
+		return nil, false
 	}
 
 	node := nxt
@@ -162,5 +166,5 @@ func (list *SkipList) Delete(key string) interface{} {
 	}
 
 	list.length--
-	return node.value
+	return node.value, true
 }
