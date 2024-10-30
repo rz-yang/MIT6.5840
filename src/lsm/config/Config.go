@@ -12,6 +12,8 @@ type Config struct {
 	GrowTimes int
 	// 最大level层级
 	MaxLevel int
+	// 每层中 SsTable 表数量的阈值，该层 SsTable 将会被压缩到下一层
+	PartSize int
 }
 
 var once *sync.Once = &sync.Once{}

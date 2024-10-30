@@ -100,15 +100,15 @@ func (w *Wal) LoadToMemory(list *skipList.SkipList) *skipList.SkipList {
 			log.Fatalf("error unmarshalling value %v", err)
 		}
 		if value.Deleted {
-			list.Delete(value.Key)
+			// list.Delete(value.Key)
 			preList.Delete(value.Key)
 		} else {
-			list.Insert(value.Key, value.Value)
+			// list.Insert(value.Key, value.Value)
 			preList.Insert(value.Key, value.Value)
 		}
 		index += dataLen
 	}
-	return nil
+	return preList
 }
 
 // 写WAL
