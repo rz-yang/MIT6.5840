@@ -6,18 +6,17 @@ import (
 	"os"
 	"raft_LSMTree-based_KVStore/lsm/config"
 	"raft_LSMTree-based_KVStore/lsm/kv"
-	"sort"
 	"strconv"
 	"sync"
 )
 
 // 在level 0创建SSTable
 func (tree *LevelTree) CreateNewTable(values []kv.Value) {
-	tree.createTable(values, 0)
+	tree.createTable(values, 0, false)
 }
 
 // 在level层创建SSTable
-func (tree *LevelTree) createTable(values []kv.Value, level int) *SSTable {
+func (tree *LevelTree) createTable(values []kv.Value, level int, tmpFileName bool) *SSTable {
 	keys := make([]string, 0, len(values))
 	sortedString := make([]IndexedPosition, 0, len(values))
 	// 数据区
@@ -41,8 +40,8 @@ func (tree *LevelTree) createTable(values []kv.Value, level int) *SSTable {
 		})
 		dataArea = append(dataArea, data...)
 	}
-	var ps IndexedPositions = sortedString
-	sort.Sort(ps)
+	// var ps IndexedPositions = sortedString
+	// sort.Sort(ps)
 
 	// 生成索引区
 	indexArea, err := json.Marshal(sortedString)
@@ -67,7 +66,12 @@ func (tree *LevelTree) createTable(values []kv.Value, level int) *SSTable {
 	index := tree.Insert(sstable, level)
 	log.Printf("Create a new SSTable, level: %d, index : %d\r\n", level, index)
 	con := config.GetConfig()
-	filePath := con.DataDir + "/" + strconv.Itoa(level) + "." + strconv.Itoa(index) + ".db"
+	var filePath string
+	if tmpFileName {
+		filePath = con.DataDir + "/" + strconv.Itoa(level) + "." + strconv.Itoa(index) + ".db_tmp"
+	} else {
+		filePath = con.DataDir + "/" + strconv.Itoa(level) + "." + strconv.Itoa(index) + ".db"
+	}
 	sstable.filePath = filePath
 
 	writeDataToFile(filePath, dataArea, indexArea, metaInfo)

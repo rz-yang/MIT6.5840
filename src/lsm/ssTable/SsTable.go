@@ -7,7 +7,6 @@ import (
 	"log"
 	"os"
 	"raft_LSMTree-based_KVStore/lsm/kv"
-	"sort"
 	"strings"
 	"sync"
 )
@@ -105,7 +104,7 @@ func (table *SSTable) loadSpareIndex() {
 
 	// 反序列化
 	sortedString := make([]IndexedPosition, 0)
-	err = json.Unmarshal(bytes, &table.sortedString)
+	err = json.Unmarshal(bytes, &sortedString)
 	if err != nil {
 		log.Fatalf("error Unmarshal bytes to spareIndex %v", err)
 	}
@@ -114,9 +113,9 @@ func (table *SSTable) loadSpareIndex() {
 		log.Fatalf("error seek file %v", err)
 	}
 
-	var p IndexedPositions = sortedString
-	sort.Sort(p)
-	table.sortedString = p
+	//var p IndexedPositions = sortedString
+	//sort.Sort(p)
+	table.sortedString = sortedString
 }
 
 func (table *SSTable) GetMinKey() string {
@@ -127,6 +126,42 @@ func (table *SSTable) GetMinKey() string {
 		return ""
 	}
 	return table.sortedString[0].key
+}
+
+func (table *SSTable) GetMaxKey() string {
+	table.mutex.RLock()
+	defer table.mutex.RUnlock()
+	if len(table.sortedString) == 0 {
+		log.Fatalln("Illegal sstable elements count 0")
+		return ""
+	}
+	return table.sortedString[len(table.sortedString)-1].key
+}
+
+func (table *SSTable) GetAllData() []kv.Value {
+	table.mutex.RLock()
+	defer table.mutex.RUnlock()
+	bytes := make([]byte, table.tableMetaInfo.dataLen)
+	f := table.f
+	_, err := f.Seek(table.tableMetaInfo.dataStart, 0)
+	if err != nil {
+		log.Fatalf("error seek file %v", err)
+	}
+	_, err = f.Read(bytes)
+	if err != nil {
+		log.Fatalf("error seek file %v", err)
+	}
+	// 反序列化
+	sortedKV := make([]kv.Value, 0)
+	err = json.Unmarshal(bytes, &sortedKV)
+	if err != nil {
+		log.Fatalf("error Unmarshal bytes to spareIndex %v", err)
+	}
+	_, err = f.Seek(0, 0)
+	if err != nil {
+		log.Fatalf("error seek file %v", err)
+	}
+	return sortedKV
 }
 
 // 二分查找sst去寻找元素
@@ -168,4 +203,22 @@ func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult
 		log.Fatalf("error decoding value %v", err)
 	}
 	return value, kv.Success
+}
+
+func (table *SSTable) FileRename(targetName string) {
+	table.mutex.Lock()
+	defer table.mutex.Unlock()
+	err := table.f.Close()
+	if err != nil {
+		log.Fatalf("error close file %v", err)
+	}
+	err = os.Rename(table.filePath, targetName)
+	if err != nil {
+		log.Fatalf("error rename file %v", err)
+	}
+	table.filePath = targetName
+	table.f, err = os.OpenFile(table.filePath, os.O_RDONLY, 0666)
+	if err != nil {
+		log.Fatalf("error open file %v", err)
+	}
 }

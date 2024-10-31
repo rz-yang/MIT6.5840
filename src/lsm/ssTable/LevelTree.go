@@ -129,6 +129,45 @@ func (tree *LevelTree) loadDbFile(path string) {
 	}
 }
 
+func (tree *LevelTree) getLevel0AllData() []kv.Value {
+	tree.mutex.RLock()
+	defer tree.mutex.RUnlock()
+	values := make([]kv.Value, 0)
+	node := tree.levelsTail[0]
+	for node != nil {
+		values = twoWayCombine(values, node.table.GetAllData())
+		node = node.prev
+	}
+	return values
+}
+
+func twoWayCombine(v1, v2 []kv.Value) []kv.Value {
+	result := make([]kv.Value, 0)
+	p1, p2 := 0, 0
+	for p1 < len(v1) && p2 < len(v2) {
+		if strings.Compare(v1[p1].Key, v2[p2].Key) == 0 {
+			result = append(result, v1[p1])
+			p1++
+			p2++
+		} else if strings.Compare(v1[p1].Key, v2[p2].Key) < 0 {
+			result = append(result, v1[p1])
+			p1++
+		} else {
+			result = append(result, v2[p2])
+			p2++
+		}
+	}
+	for p1 < len(v1) {
+		result = append(result, v1[p1])
+		p1++
+	}
+	for p2 < len(v2) {
+		result = append(result, v2[p2])
+		p2++
+	}
+	return result
+}
+
 func getLevel(name string) (level int, index int, err error) {
 	n, err := fmt.Sscanf(name, "%d.%d.db", &level, &index)
 	if n != 2 || err != nil {
