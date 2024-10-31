@@ -19,6 +19,11 @@ func NewReadOnlyMemTables() *ReadOnlyMemTables {
 	}
 }
 
+func (rt *ReadOnlyMemTables) Init() {
+	rt.IMemTables = make([]*IMemTable, 0)
+	rt.mutex = sync.RWMutex{}
+}
+
 func (rt *ReadOnlyMemTables) GetLen() int {
 	rt.mutex.RLock()
 	defer rt.mutex.RUnlock()

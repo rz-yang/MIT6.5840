@@ -24,8 +24,28 @@ var once *sync.Once = &sync.Once{}
 
 var config Config
 
-func Init(con Config) {
-	once.Do(func() { config = con })
+var defaultConfig = Config{
+	DataDir:       "./data",
+	Level0Size:    10,
+	GrowTimes:     3,
+	MaxLevel:      10,
+	PartSize:      1024 * 1024,
+	CheckInterval: 5,
+	Threshold:     1024,
+}
+
+func init() {
+	config = Config{}
+}
+
+func SetConfig(con Config) {
+	config.DataDir = con.DataDir
+	config.Level0Size = con.Level0Size
+	config.GrowTimes = con.GrowTimes
+	config.MaxLevel = con.MaxLevel
+	config.PartSize = con.PartSize
+	config.CheckInterval = con.CheckInterval
+	config.Threshold = con.Threshold
 }
 
 func GetConfig() Config {

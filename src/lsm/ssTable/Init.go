@@ -1,8 +1,8 @@
 package ssTable
 
 import (
-	"io/ioutil"
 	"log"
+	"os"
 	"path"
 	"raft_LSMTree-based_KVStore/lsm/config"
 	"sync"
@@ -22,9 +22,9 @@ func (tree *LevelTree) Init(dir string) {
 	levelCnt := con.MaxLevel
 	tree.levelsTail = make([]*tableNode, levelCnt)
 	tree.mutex = sync.RWMutex{}
-	fileInfo, err := ioutil.ReadDir(dir)
+	fileInfo, err := os.ReadDir(dir)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	for _, info := range fileInfo {
 		if path.Ext(info.Name()) == ".db" {

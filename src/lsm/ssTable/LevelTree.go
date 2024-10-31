@@ -43,6 +43,8 @@ func (tree *LevelTree) Search(key string) (kv.Value, kv.SearchResult) {
 }
 
 func (tree *LevelTree) getCount(level int) int {
+	tree.mutex.RLock()
+	defer tree.mutex.RUnlock()
 	count := 0
 	ptr := tree.levelsTail[level]
 	for ptr != nil {

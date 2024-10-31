@@ -24,6 +24,17 @@ type Database struct {
 // 数据库全局唯一实例
 var database *Database
 
+func init() {
+	database = new(Database)
+}
+
+func (db *Database) Init(memTable *MemTable, iMemTables *ReadOnlyMemTables, levelTable *ssTable.LevelTree) {
+	db.MemTable = memTable
+	db.IMemTable = iMemTables
+	db.LevelTree = levelTable
+	db.rwLock = sync.RWMutex{}
+}
+
 func (db *Database) loadAllWalFiles(dir string) {
 	infos, err := os.ReadDir(dir)
 	if err != nil {
