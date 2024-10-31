@@ -204,3 +204,15 @@ func (list *SkipList) Len() int {
 	defer list.mutex.RUnlock()
 	return list.length
 }
+
+// 返回有序列表
+func (list *SkipList) GetValues() []kv.Value {
+	list.mutex.RLock()
+	defer list.mutex.RUnlock()
+	values := make([]kv.Value, 0, list.length)
+	ptr := list.next[0]
+	for ptr != nil {
+		values = append(values, ptr.value.(kv.Value))
+	}
+	return values
+}

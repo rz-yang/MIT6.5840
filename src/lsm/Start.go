@@ -12,7 +12,13 @@ func Start(globalConfig config.Config) {
 	log.Println("Loading a Configuration File")
 	config.SetConfig(globalConfig)
 	log.Println("Initializing the database")
+	initDatabase(globalConfig.DataDir)
 
+	log.Println("Performing background checks...")
+	checkMemory()
+	database.LevelTree.Check()
+	go Check()
+	go CompressMemory()
 }
 
 // 初始化Database

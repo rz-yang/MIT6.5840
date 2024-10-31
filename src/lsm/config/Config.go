@@ -27,11 +27,11 @@ var config Config
 var defaultConfig = Config{
 	DataDir:       "./data",
 	Level0Size:    10,
-	GrowTimes:     3,
+	GrowTimes:     10,
 	MaxLevel:      10,
 	PartSize:      1024 * 1024,
 	CheckInterval: 5,
-	Threshold:     1024,
+	Threshold:     1024 * 8,
 }
 
 func init() {
