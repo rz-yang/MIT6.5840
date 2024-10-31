@@ -52,6 +52,10 @@ func GetConfig() Config {
 	return config
 }
 
+func GetDefaultConfig() Config {
+	return defaultConfig
+}
+
 func GetLevelMaxSize(level int) int {
 	return config.Level0Size * pow(config.GrowTimes, level)
 }
