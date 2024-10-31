@@ -119,10 +119,20 @@ func (table *SSTable) loadSpareIndex() {
 	table.sortedString = p
 }
 
+func (table *SSTable) GetMinKey() string {
+	table.mutex.RLock()
+	defer table.mutex.RUnlock()
+	if len(table.sortedString) == 0 {
+		log.Fatalln("Illegal sstable elements count 0")
+		return ""
+	}
+	return table.sortedString[0].key
+}
+
 // 二分查找sst去寻找元素
 func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult) {
-	table.mutex.Lock()
-	defer table.mutex.Unlock()
+	table.mutex.RLock()
+	defer table.mutex.RUnlock()
 	lo, hi := 0, len(table.sortedString)
 	for lo <= hi {
 		mid := (lo + hi) / 2
