@@ -38,7 +38,7 @@ func (w *Wal) Init(dir string) {
 	w.lock = sync.Mutex{}
 }
 
-func (w *Wal) LoadFromFile(path string, list *skipList.SkipList) *skipList.SkipList {
+func (w *Wal) LoadFromFile(path string) *skipList.SkipList {
 	f, err := os.OpenFile(path, os.O_CREATE|os.O_RDWR|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("error opening wal.log file: %v", err)
@@ -46,11 +46,11 @@ func (w *Wal) LoadFromFile(path string, list *skipList.SkipList) *skipList.SkipL
 	w.f = f
 	w.path = path
 	w.lock = sync.Mutex{}
-	return w.LoadToMemory(list)
+	return w.LoadToMemory()
 }
 
 // 利用wal构建一个完整的SkipList
-func (w *Wal) LoadToMemory(list *skipList.SkipList) *skipList.SkipList {
+func (w *Wal) LoadToMemory() *skipList.SkipList {
 	w.lock.Lock()
 	defer w.lock.Unlock()
 

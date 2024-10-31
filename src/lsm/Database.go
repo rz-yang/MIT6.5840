@@ -7,6 +7,7 @@ import (
 	"raft_LSMTree-based_KVStore/lsm/kv"
 	"raft_LSMTree-based_KVStore/lsm/ssTable"
 	"raft_LSMTree-based_KVStore/lsm/wal"
+	"sort"
 	"sync"
 )
 
@@ -40,19 +41,32 @@ func (db *Database) loadAllWalFiles(dir string) {
 	if err != nil {
 		panic(err)
 	}
+	allWalPaths := make([]string, 0)
 	for _, info := range infos {
 		name := info.Name()
 		if path.Ext(name) == ".log" {
-			preWal := &wal.Wal{}
-			preTree := preWal.LoadFromFile(path.Join(dir, name), db.MemTable.MemoryList)
-			table := &IMemTable{
-				MemoryList: preTree,
-				Wal:        preWal,
-			}
-			log.Printf("add table to iMemTable, table: %v\n", table)
-			db.IMemTable.AddTable(table)
+			allWalPaths = append(allWalPaths, path.Join(dir, name))
 		}
 	}
+	sort.Strings(allWalPaths)
+	// 对最后一个（最新的）WAL文件加载到MEMTABLE，其他加载到IMEMTABLE
+	for i := 0; i < len(allWalPaths)-1; i++ {
+		preWal := &wal.Wal{}
+		preTree := preWal.LoadFromFile(allWalPaths[i])
+		table := &IMemTable{
+			MemoryList: preTree,
+			Wal:        preWal,
+		}
+		log.Printf("add table to iMemTable, table: %v\n", table)
+		db.IMemTable.AddTable(table)
+	}
+	memWal := &wal.Wal{}
+	memTree := memWal.LoadFromFile(allWalPaths[len(allWalPaths)-1])
+	memTable := &MemTable{
+		MemoryList: memTree,
+		Wal:        memWal,
+	}
+	db.MemTable = memTable
 }
 
 func (db *Database) Swap() {

@@ -25,6 +25,9 @@ func (m *MemTable) InitMemList() {
 }
 
 func (m *MemTable) InitWal(dir string) {
+	if m.Wal != nil {
+		return
+	}
 	log.Println("Initializing MemTable Wal...")
 	m.Wal = &wal.Wal{}
 	m.Wal.Init(dir)
