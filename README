@@ -4,7 +4,7 @@ raft集群的实现参考MIT 6.824课程，基于raft paper实现
 
 在此基础之上，额外补充实现了：
 1. 基于LSM-Tree的存储（Done）
-1.2 实现布隆过滤器（to do）
+1.2 实现布隆过滤器（Done）
 2. 数据一致性hash分片（to do）
 3. 分片集群的配置更替（to do）
 4. client端代码（to do）
