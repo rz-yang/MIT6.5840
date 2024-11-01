@@ -8,10 +8,11 @@ import (
 )
 
 type TestValue struct {
-	A int64
-	B int64
-	C int64
-	D string
+	Key string
+	A   int64
+	B   int64
+	C   int64
+	D   string
 }
 
 func main() {
@@ -32,25 +33,29 @@ func testResetWalBug() {
 		GrowTimes:     10,
 		MaxLevel:      10,
 	})
-	insertValuesByCount(10000, 10)
+	//insertValuesByCount(20000, 10)
 	//time.Sleep(2 * time.Second)
 	//insertValuesByCount(6, 0)
-	//keys := []string{"0", "1", "2", "3", "4", "5"}
-	//queryByKeys(keys)
+	keys := []string{"3", "15", "16", "20", "30", "40", "5000"}
+	queryByKeys(keys)
 	time.Sleep(10 * time.Second)
 }
 
 func queryByKeys(keys []string) {
 	for _, key := range keys {
 		start := time.Now()
-		v, _ := lsm.Get[TestValue](key)
+		v, exists := lsm.Get[TestValue](key)
+		if exists {
+			fmt.Println("已找到，value为", v)
+		} else {
+			fmt.Printf("未找到key %v对应的键值对\n", key)
+		}
 		elapse := time.Since(start)
 		fmt.Println("查找", key, " 完成，消耗时间：", elapse)
-		fmt.Println(v)
 	}
 }
 
-func query() {
+func query(key string) {
 	start := time.Now()
 	v, _ := lsm.Get[TestValue]("4")
 	elapse := time.Since(start)
@@ -58,23 +63,29 @@ func query() {
 	fmt.Println(v)
 
 	start = time.Now()
-	v, _ = lsm.Get[TestValue]("2")
+	v, exists := lsm.Get[TestValue](key)
+	if exists {
+		fmt.Println(v)
+	} else {
+		fmt.Printf("未找到key %v对应的键值对\n", key)
+	}
 	elapse = time.Since(start)
 	fmt.Println("查找 aazzzz 完成，消耗时间：", elapse)
-	fmt.Println(v)
+
 }
 
 func insertValuesByCount(count, startFrom int) {
 	start := time.Now()
 	// 64 个字节
 	testV := TestValue{
-		A: 1,
-		B: 1,
 		C: 3,
-		D: "00000000000000000000000000000000000000",
+		D: "hello world",
 	}
 	for i := 0; i < count; i++ {
-		lsm.Set(fmt.Sprint(i+startFrom), testV)
+		testV.A = int64(i + startFrom)
+		testV.B = int64(i + startFrom)
+		testV.Key = fmt.Sprint(i + startFrom)
+		lsm.Set(testV.Key, testV)
 	}
 	elapse := time.Since(start)
 	fmt.Println("插入完成，数据量：", count, ",消耗时间：", elapse)
