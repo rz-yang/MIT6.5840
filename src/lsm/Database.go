@@ -48,6 +48,9 @@ func (db *Database) loadAllWalFiles(dir string) {
 			allWalPaths = append(allWalPaths, path.Join(dir, name))
 		}
 	}
+	if len(allWalPaths) == 0 {
+		return
+	}
 	sort.Strings(allWalPaths)
 	// 对最后一个（最新的）WAL文件加载到MEMTABLE，其他加载到IMEMTABLE
 	for i := 0; i < len(allWalPaths)-1; i++ {
@@ -72,6 +75,12 @@ func (db *Database) loadAllWalFiles(dir string) {
 func (db *Database) Swap() {
 	db.rwLock.Lock()
 	defer db.rwLock.Unlock()
+	table := db.MemTable.swap()
+	// 将内存表存储到IMemTable
+	db.IMemTable.AddTable(table)
+}
+
+func (db *Database) SwapWithoutLock() {
 	table := db.MemTable.swap()
 	// 将内存表存储到IMemTable
 	db.IMemTable.AddTable(table)
@@ -106,7 +115,8 @@ func (db *Database) Set(key string, value []byte) bool {
 	defer db.rwLock.Unlock()
 	_, _, needSwap := db.MemTable.Set(key, value)
 	if needSwap {
-		go db.Swap()
+		log.Println("starting swapping...")
+		db.SwapWithoutLock()
 	}
 	return true
 }
@@ -114,6 +124,11 @@ func (db *Database) Set(key string, value []byte) bool {
 func (db *Database) Delete(key string) bool {
 	db.rwLock.Lock()
 	defer db.rwLock.Unlock()
-	db.MemTable.Delete(key)
+	// 插入一个Deleted的kv.value数据
+	_, _, needSwap := db.MemTable.Delete(key)
+	if needSwap {
+		log.Println("starting swapping...")
+		db.SwapWithoutLock()
+	}
 	return true
 }

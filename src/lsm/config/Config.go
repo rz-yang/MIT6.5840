@@ -61,7 +61,7 @@ func GetLevelMaxSize(level int) int {
 }
 
 func pow(a, b int) int {
-	ans := 0
+	ans := 1
 	for b > 0 {
 		if (b & 1) == 1 {
 			ans = ans * a

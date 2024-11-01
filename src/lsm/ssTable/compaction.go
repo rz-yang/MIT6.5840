@@ -230,8 +230,8 @@ func ClearWithBeginNode(oldNode *tableNode) {
 }
 
 func (tree *LevelTree) clearLevel(level int) {
-	tree.mutex.Lock()
-	defer tree.mutex.Unlock()
+	// tree.mutex.Lock()
+	// defer tree.mutex.Unlock()
 	oldNode := tree.levelsHead[level]
 	for oldNode != nil {
 		ClearNode(oldNode)

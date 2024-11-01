@@ -27,8 +27,8 @@ type SSTable struct {
 }
 
 type IndexedPosition struct {
-	key      string
-	position Position
+	Key      string
+	Position Position
 }
 
 type IndexedPositions []IndexedPosition
@@ -38,7 +38,7 @@ func (p IndexedPositions) Len() int {
 }
 
 func (p IndexedPositions) Less(i, j int) bool {
-	return strings.Compare(p[i].key, p[j].key) < 0
+	return strings.Compare(p[i].Key, p[j].Key) < 0
 }
 
 func (p IndexedPositions) Swap(i, j int) {
@@ -93,7 +93,7 @@ func (table *SSTable) loadMetaInfo() {
 func (table *SSTable) loadSpareIndex() {
 	bytes := make([]byte, table.tableMetaInfo.indexLen)
 	f := table.f
-	_, err := f.Seek(table.tableMetaInfo.indexLen, 0)
+	_, err := f.Seek(table.tableMetaInfo.indexStart, 0)
 	if err != nil {
 		log.Fatalf("error seek file %v", err)
 	}
@@ -125,7 +125,7 @@ func (table *SSTable) GetMinKey() string {
 		log.Fatalln("Illegal sstable elements count 0")
 		return ""
 	}
-	return table.sortedString[0].key
+	return table.sortedString[0].Key
 }
 
 func (table *SSTable) GetMaxKey() string {
@@ -135,7 +135,7 @@ func (table *SSTable) GetMaxKey() string {
 		log.Fatalln("Illegal sstable elements count 0")
 		return ""
 	}
-	return table.sortedString[len(table.sortedString)-1].key
+	return table.sortedString[len(table.sortedString)-1].Key
 }
 
 func (table *SSTable) GetAllData() []kv.Value {
@@ -152,11 +152,17 @@ func (table *SSTable) GetAllData() []kv.Value {
 		log.Fatalf("error seek file %v", err)
 	}
 	// 反序列化
-	sortedKV := make([]kv.Value, 0)
-	err = json.Unmarshal(bytes, &sortedKV)
-	if err != nil {
-		log.Fatalf("error Unmarshal bytes to spareIndex %v", err)
+	sortedKV := make([]kv.Value, 0, len(table.sortedString))
+	// 不断地取一个，然后序列化
+	for _, info := range table.sortedString {
+		var tmpKV kv.Value
+		err = json.Unmarshal(bytes[info.Position.Start:info.Position.Start+info.Position.Len], &tmpKV)
+		if err != nil {
+			log.Fatalf("error Unmarshal bytes to kvdata %v", err)
+		}
+		sortedKV = append(sortedKV, tmpKV)
 	}
+
 	_, err = f.Seek(0, 0)
 	if err != nil {
 		log.Fatalf("error seek file %v", err)
@@ -171,23 +177,23 @@ func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult
 	lo, hi := 0, len(table.sortedString)
 	for lo <= hi {
 		mid := (lo + hi) / 2
-		if strings.Compare(table.sortedString[mid].key, key) <= 0 {
+		if strings.Compare(table.sortedString[mid].Key, key) <= 0 {
 			lo = mid + 1
 		} else {
 			hi = mid - 1
 		}
 	}
 
-	if hi < 0 || strings.Compare(table.sortedString[hi].key, key) != 0 {
+	if hi < 0 || strings.Compare(table.sortedString[hi].Key, key) != 0 {
 		return kv.Value{}, kv.KeyNotFound
 	}
 
-	if table.sortedString[hi].position.Deleted {
+	if table.sortedString[hi].Position.Deleted {
 		return kv.Value{}, kv.Deleted
 	}
 
 	// 否则从磁盘读取
-	position := table.sortedString[hi].position
+	position := table.sortedString[hi].Position
 	bytes := make([]byte, position.Len)
 	_, err := table.f.Seek(position.Start, 0)
 	if err != nil {

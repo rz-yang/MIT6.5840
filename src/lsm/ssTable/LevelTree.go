@@ -28,6 +28,13 @@ type tableNode struct {
 	next  *tableNode
 }
 
+func (tree *LevelTree) InitWithParam(levelCnt int) {
+	tree.count = make([]int, levelCnt)
+	tree.levelsHead = make([]*tableNode, levelCnt)
+	tree.levelsTail = make([]*tableNode, levelCnt)
+	tree.mutex = sync.RWMutex{}
+}
+
 // 从所有的SSTable查找数据
 // 查找也可以优化，因为1+层level是有序的，所以可以根据最大最小值进行预筛选
 func (tree *LevelTree) Search(key string) (kv.Value, kv.SearchResult) {
@@ -62,6 +69,23 @@ func (tree *LevelTree) getCount(level int) int {
 func (tree *LevelTree) Insert(table *SSTable, level int) int {
 	tree.mutex.Lock()
 	defer tree.mutex.Unlock()
+	tree.count[level]++
+	newNode := &tableNode{
+		table: table,
+		index: tree.count[level],
+		prev:  tree.levelsTail[level],
+	}
+	if tree.levelsHead[level] == nil {
+		tree.levelsHead[level] = newNode
+	} else {
+		tree.levelsTail[level].next = newNode
+	}
+	tree.levelsTail[level] = newNode
+	return newNode.index
+}
+
+// Insert 在链表末尾插入
+func (tree *LevelTree) insert(table *SSTable, level int) int {
 	tree.count[level]++
 	newNode := &tableNode{
 		table: table,
@@ -130,8 +154,8 @@ func (tree *LevelTree) loadDbFile(path string) {
 }
 
 func (tree *LevelTree) getLevel0AllData() []kv.Value {
-	tree.mutex.RLock()
-	defer tree.mutex.RUnlock()
+	// tree.mutex.RLock()
+	// defer tree.mutex.RUnlock()
 	values := make([]kv.Value, 0)
 	node := tree.levelsTail[0]
 	for node != nil {

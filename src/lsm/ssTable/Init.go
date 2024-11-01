@@ -5,7 +5,6 @@ import (
 	"os"
 	"path"
 	"raft_LSMTree-based_KVStore/lsm/config"
-	"sync"
 	"time"
 )
 
@@ -20,8 +19,7 @@ func (tree *LevelTree) Init(dir string) {
 
 	con := config.GetConfig()
 	levelCnt := con.MaxLevel
-	tree.levelsTail = make([]*tableNode, levelCnt)
-	tree.mutex = sync.RWMutex{}
+	tree.InitWithParam(levelCnt)
 	fileInfo, err := os.ReadDir(dir)
 	if err != nil {
 		panic(err)

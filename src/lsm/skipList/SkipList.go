@@ -175,7 +175,6 @@ func (list *SkipList) clear() {
 	list.curLevel = 0
 	list.length = 0
 	list.SkipNode = SkipNode{}
-	list.mutex = sync.RWMutex{}
 	list.SkipNode.next = make([]*SkipNode, list.maxL)
 }
 
@@ -206,13 +205,14 @@ func (list *SkipList) Len() int {
 }
 
 // 返回有序列表
-func (list *SkipList) GetValues() []kv.Value {
+func (list *SkipList) GetValues() []interface{} {
 	list.mutex.RLock()
 	defer list.mutex.RUnlock()
-	values := make([]kv.Value, 0, list.length)
+	values := make([]interface{}, 0, list.length)
 	ptr := list.next[0]
 	for ptr != nil {
-		values = append(values, ptr.value.(kv.Value))
+		values = append(values, ptr.value)
+		ptr = ptr.next[0]
 	}
 	return values
 }

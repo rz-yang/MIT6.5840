@@ -37,4 +37,6 @@ func initDatabase(dir string) {
 	log.Println("Loading all wal.log...")
 	database.loadAllWalFiles(dir)
 	database.MemTable.InitWal(dir)
+	log.Println("Loading database...")
+	database.LevelTree.Init(dir)
 }

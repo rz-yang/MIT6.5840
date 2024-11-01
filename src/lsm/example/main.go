@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"raft_LSMTree-based_KVStore/lsm"
 	"raft_LSMTree-based_KVStore/lsm/config"
 	"time"
@@ -18,23 +16,27 @@ type TestValue struct {
 
 func main() {
 	testResetWalBug()
+	for {
+		time.Sleep(10 * time.Second)
+	}
 }
 
 func testResetWalBug() {
-	defer func() {
-		r := recover()
-		if r != nil {
-			fmt.Println(r)
-			inputReader := bufio.NewReader(os.Stdin)
-			_, _ = inputReader.ReadString('\n')
-		}
-	}()
-	lsm.Start(config.GetDefaultConfig())
-	insertValuesByCount(10, 10)
-	time.Sleep(2 * time.Second)
-	insertValuesByCount(6, 0)
-	keys := []string{"0", "1", "2", "3", "4", "5"}
-	queryByKeys(keys)
+	// lsm.Start(config.GetDefaultConfig())
+	lsm.Start(config.Config{
+		DataDir:       "./data",
+		Level0Size:    1,
+		PartSize:      4,
+		Threshold:     1000,
+		CheckInterval: 2,
+		GrowTimes:     10,
+		MaxLevel:      10,
+	})
+	insertValuesByCount(10000, 10)
+	//time.Sleep(2 * time.Second)
+	//insertValuesByCount(6, 0)
+	//keys := []string{"0", "1", "2", "3", "4", "5"}
+	//queryByKeys(keys)
 	time.Sleep(10 * time.Second)
 }
 
@@ -42,7 +44,6 @@ func queryByKeys(keys []string) {
 	for _, key := range keys {
 		start := time.Now()
 		v, _ := lsm.Get[TestValue](key)
-		fmt.Println(v.D)
 		elapse := time.Since(start)
 		fmt.Println("查找", key, " 完成，消耗时间：", elapse)
 		fmt.Println(v)

@@ -16,6 +16,8 @@ type MemTable struct {
 	// WalF 文件句柄
 	Wal   *wal.Wal
 	mutex sync.RWMutex
+
+	walUid int
 }
 
 func (m *MemTable) InitMemList() {
@@ -30,13 +32,29 @@ func (m *MemTable) InitWal(dir string) {
 	}
 	log.Println("Initializing MemTable Wal...")
 	m.Wal = &wal.Wal{}
-	m.Wal.Init(dir)
+	m.Wal.Init(dir, m.walUid)
+	m.walUid++
+}
+
+func (m *MemTable) GetUid() int {
+	m.mutex.RLock()
+	defer m.mutex.RUnlock()
+	return m.walUid
+}
+
+func (m *MemTable) IncreaseUid() {
+	m.mutex.Lock()
+	defer m.mutex.Unlock()
+	m.walUid++
 }
 
 func (m *MemTable) Search(key string) (kv.Value, kv.SearchResult) {
 	m.mutex.RLock()
 	defer m.mutex.RUnlock()
 	val, res := m.MemoryList.Search(key)
+	if res != kv.Success {
+		return kv.Value{}, res
+	}
 	convertedVal, ok := val.(kv.Value)
 	if !ok {
 		fmt.Printf("error converting %v to (kv.Value)\n", val)
@@ -49,8 +67,12 @@ func (m *MemTable) Set(key string, value []byte) (kv.Value, bool, bool) {
 	defer m.mutex.Unlock()
 	node := kv.Value{Key: key, Value: value, Deleted: false}
 	oldValue, hasOld := m.MemoryList.Insert(key, node)
-	oldKVValue, ok := oldValue.(kv.Value)
-	if !ok {
+	var oldKVValue kv.Value
+	var ok bool
+	if hasOld {
+		oldKVValue, ok = oldValue.(kv.Value)
+	}
+	if hasOld && !ok {
 		fmt.Printf("error converting %v to (kv.Value)\n", oldValue)
 	}
 	m.Wal.Write(node)
@@ -65,18 +87,18 @@ func (m *MemTable) Set(key string, value []byte) (kv.Value, bool, bool) {
 	return oldKVValue, hasOld, needSwap
 }
 
-func (m *MemTable) Delete(key string) (kv.Value, bool) {
+func (m *MemTable) Delete(key string) (kv.Value, bool, bool) {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
-	oldValue, success := m.MemoryList.Delete(key)
+	data, _ := kv.Convert(kv.Value{Key: key, Value: nil, Deleted: true})
+	oldValue, hasOld, needSwap := m.Set(key, data)
+	/*oldValue, success := m.MemoryList.Delete(key)
 	oldKVValue, ok := oldValue.(kv.Value)
 	if !ok {
 		fmt.Printf("error converting %v to (kv.Value)\n", oldValue)
-	}
-	if success {
-		m.Wal.Write(kv.Value{Key: key, Value: nil, Deleted: true})
-	}
-	return oldKVValue, success
+	}*/
+	m.Wal.Write(kv.Value{Key: key, Value: nil, Deleted: true})
+	return oldValue, hasOld, needSwap
 }
 
 // 生成IMemTable，并清空MemTable
@@ -91,7 +113,8 @@ func (m *MemTable) swap() *IMemTable {
 		Wal:        m.Wal,
 	}
 	newWal := &wal.Wal{}
-	newWal.Init(globalConfig.DataDir)
+	newWal.Init(globalConfig.DataDir, m.walUid)
+	m.walUid++
 	m.Wal = newWal
 	return iTable
 }
@@ -105,7 +128,8 @@ func (m *MemTable) swapWithoutLock() *IMemTable {
 		Wal:        m.Wal,
 	}
 	newWal := &wal.Wal{}
-	newWal.Init(globalConfig.DataDir)
+	newWal.Init(globalConfig.DataDir, m.walUid)
+	m.walUid++
 	m.Wal = newWal
 	return iTable
 }

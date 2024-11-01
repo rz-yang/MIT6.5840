@@ -9,6 +9,7 @@ import (
 	"path"
 	"raft_LSMTree-based_KVStore/lsm/kv"
 	"raft_LSMTree-based_KVStore/lsm/skipList"
+	"strconv"
 	"sync"
 	"time"
 )
@@ -19,7 +20,7 @@ type Wal struct {
 	lock sync.Mutex
 }
 
-func (w *Wal) Init(dir string) {
+func (w *Wal) Init(dir string, uid int) {
 	log.Println("Loading wal.log...")
 	start := time.Now()
 	defer func() {
@@ -27,7 +28,7 @@ func (w *Wal) Init(dir string) {
 		log.Printf("Load wal.log took: %s", elapsed)
 	}()
 	uuidStr := time.Now().Format("20060102_150405")
-	walPath := path.Join(dir, uuidStr+"_wal.log")
+	walPath := path.Join(dir, uuidStr+strconv.Itoa(uid)+"_wal.log")
 	log.Printf("init wal.log: %s", walPath)
 	f, err := os.OpenFile(walPath, os.O_CREATE|os.O_RDWR|os.O_APPEND, 0666)
 	if err != nil {
@@ -99,13 +100,7 @@ func (w *Wal) LoadToMemory() *skipList.SkipList {
 		if err != nil {
 			log.Fatalf("error unmarshalling value %v", err)
 		}
-		if value.Deleted {
-			// list.Delete(value.Key)
-			preList.Delete(value.Key)
-		} else {
-			// list.Insert(value.Key, value.Value)
-			preList.Insert(value.Key, value.Value)
-		}
+		preList.Insert(value.Key, value)
 		index += dataLen
 	}
 	return preList
@@ -123,7 +118,7 @@ func (w *Wal) Write(value kv.Value) {
 	}
 
 	data, _ := json.Marshal(value)
-	err := binary.Write(w.f, binary.LittleEndian, uint32(len(data)))
+	err := binary.Write(w.f, binary.LittleEndian, int64(len(data)))
 	if err != nil {
 		log.Printf("wal.write: write error: %v", err)
 	}

@@ -3,6 +3,7 @@ package lsm
 import (
 	"log"
 	"raft_LSMTree-based_KVStore/lsm/config"
+	"raft_LSMTree-based_KVStore/lsm/kv"
 	"time"
 )
 
@@ -32,7 +33,16 @@ func CompressMemory() {
 		for database.IMemTable.GetLen() != 0 {
 			log.Println("Compressing iMemTable")
 			preTable := database.IMemTable.GetTable()
-			database.LevelTree.CreateNewTable(preTable.MemoryList.GetValues())
+			val := preTable.MemoryList.GetValues()
+			kvVal := make([]kv.Value, 0, len(val))
+			for _, v := range val {
+				trueV, ok := v.(kv.Value)
+				if !ok {
+					log.Println("error converting in CompressMemory")
+				}
+				kvVal = append(kvVal, trueV)
+			}
+			database.LevelTree.CreateNewTable(kvVal)
 			preTable.Wal.DeleteFile()
 		}
 	}

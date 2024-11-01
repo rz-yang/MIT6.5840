@@ -2,6 +2,7 @@ package ssTable
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 	"raft_LSMTree-based_KVStore/lsm/config"
@@ -12,6 +13,9 @@ import (
 
 // 在level 0创建SSTable
 func (tree *LevelTree) CreateNewTable(values []kv.Value) {
+	tree.mutex.Lock()
+	defer tree.mutex.Unlock()
+	fmt.Println("Create New ssTable at level0")
 	tree.createTable(values, 0, false)
 }
 
@@ -31,8 +35,8 @@ func (tree *LevelTree) createTable(values []kv.Value, level int, tmpFileName boo
 		keys = append(keys, value.Key)
 		// 文件定位符
 		sortedString = append(sortedString, IndexedPosition{
-			key: value.Key,
-			position: Position{
+			Key: value.Key,
+			Position: Position{
 				Start:   int64(len(dataArea)),
 				Len:     int64(len(data)),
 				Deleted: value.Deleted,
@@ -63,7 +67,7 @@ func (tree *LevelTree) createTable(values []kv.Value, level int, tmpFileName boo
 		sortedString:  sortedString,
 		mutex:         sync.RWMutex{},
 	}
-	index := tree.Insert(sstable, level)
+	index := tree.insert(sstable, level)
 	log.Printf("Create a new SSTable, level: %d, index : %d\r\n", level, index)
 	con := config.GetConfig()
 	var filePath string

@@ -1,6 +1,7 @@
 package lsm
 
 import (
+	"log"
 	"raft_LSMTree-based_KVStore/lsm/kv"
 	"sync"
 )
@@ -33,12 +34,13 @@ func (rt *ReadOnlyMemTables) GetLen() int {
 func (rt *ReadOnlyMemTables) AddTable(table *IMemTable) {
 	rt.mutex.Lock()
 	defer rt.mutex.Unlock()
+	log.Println("immutable memtable add table")
 	rt.IMemTables = append(rt.IMemTables, table)
 }
 
 func (rt *ReadOnlyMemTables) GetTable() *IMemTable {
-	rt.mutex.RLock()
-	defer rt.mutex.RUnlock()
+	rt.mutex.Lock()
+	defer rt.mutex.Unlock()
 	table := rt.IMemTables[0]
 	rt.IMemTables = rt.IMemTables[1:]
 	return table
