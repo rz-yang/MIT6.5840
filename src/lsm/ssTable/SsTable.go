@@ -174,7 +174,7 @@ func (table *SSTable) GetAllData() []kv.Value {
 func (table *SSTable) Search(key string) (value kv.Value, result kv.SearchResult) {
 	table.mutex.RLock()
 	defer table.mutex.RUnlock()
-	lo, hi := 0, len(table.sortedString)
+	lo, hi := 0, len(table.sortedString)-1
 	for lo <= hi {
 		mid := (lo + hi) / 2
 		if strings.Compare(table.sortedString[mid].Key, key) <= 0 {

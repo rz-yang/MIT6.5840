@@ -49,7 +49,7 @@ func (tree *LevelTree) Search(key string) (kv.Value, kv.SearchResult) {
 				continue
 			}
 			value, result := node.table.Search(key)
-			if result == kv.KeyNotFound {
+			if result == kv.KeyNotFound && levelIndex == 0 {
 				node = node.prev
 			} else {
 				return value, result
